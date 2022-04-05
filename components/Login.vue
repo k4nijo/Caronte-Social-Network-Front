@@ -1,14 +1,29 @@
 <template>
-  <v-card>
-    <v-card-title>Login</v-card-title>
+  <v-card width="500px">
+    <v-card-title class="text-center mx-auto">Login</v-card-title>
+    <v-divider></v-divider>
     <v-card-text>
       <v-form>
-        <v-text-field v-model="email" label="email"></v-text-field>
-        <v-text-field v-model="password" label="password"></v-text-field>
+        <v-text-field
+          label="Email"
+          v-model="email"
+          prepend-icon="mdi-email-outline"
+        ></v-text-field>
+        <v-text-field
+          v-model="password"
+          label="Password"
+          :type="passVisible ? 'text' : 'Password'"
+          prepend-icon="mdi-lock-outline"
+          :append-icon="passVisible ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
+          @click:append="passVisible = !passVisible"
+        ></v-text-field>
       </v-form>
     </v-card-text>
+    <v-card-subtitle class="text-center"
+      >Don't you have an account yet?
+    </v-card-subtitle>
     <v-card-actions>
-      <v-btn @click="login">Login</v-btn>
+      <v-btn color="primary" class="mx-auto" @click="login">Login</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -20,6 +35,7 @@ export default {
     return {
       email: '',
       password: '',
+      passVisible: false,
     }
   },
   methods: {

@@ -36,12 +36,12 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
   ],
   auth: {
     redirect: {
       login: '/',
-      home: '/Home'
+      home: '/Home',
     },
     strategies: {
       local: {
@@ -59,18 +59,16 @@ export default {
           login: {
             url: '/api/auth/login',
             method: 'post',
-            propertyName: 'token'
+            propertyName: 'token',
           },
           user: {
             url: '/api/user/profile',
-            method: 'get'
+            method: 'get',
           },
           logout: false,
         },
-        responseType: 'token',
-
-      }
-    }
+      },
+    },
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -83,7 +81,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
