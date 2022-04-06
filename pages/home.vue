@@ -1,11 +1,17 @@
 <template>
-  <div>Hola!</div>
+  <div>
+    Hola!
+    <v-container>
+      <Feed />
+    </v-container>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'home',
   middleware: 'auth',
+  layout: 'main',
 }
 </script>
 

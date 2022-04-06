@@ -1,6 +1,6 @@
 <template>
   <v-card width="500px">
-    <v-card-title class="text-center mx-auto">Login</v-card-title>
+    <v-card-title class="justify-center">Login</v-card-title>
     <v-divider></v-divider>
     <v-card-text>
       <v-form>
@@ -8,6 +8,7 @@
           label="Email"
           v-model="email"
           prepend-icon="mdi-email-outline"
+          clearable
         ></v-text-field>
         <v-text-field
           v-model="password"
@@ -20,7 +21,7 @@
       </v-form>
     </v-card-text>
     <v-card-subtitle class="text-center"
-      >Don't you have an account yet?
+      >Don't you have an account yet? <a href="">Register now</a>
     </v-card-subtitle>
     <v-card-actions>
       <v-btn color="primary" class="mx-auto" @click="login">Login</v-btn>
