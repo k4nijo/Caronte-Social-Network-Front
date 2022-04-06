@@ -24,7 +24,8 @@
         ></v-footer
       >
     </v-navigation-drawer>
-    <v-main min-width="100%">
+    <v-main min-width="100%" class="d-flex-colum justify-center">
+      <SearchBar />
       <Nuxt />
     </v-main>
     <v-navigation-drawer
@@ -33,6 +34,7 @@
       absolute
       right
       width="20%"
+      height="100%"
     ></v-navigation-drawer>
   </v-app>
 </template>

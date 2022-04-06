@@ -1,7 +1,6 @@
 <template>
   <div>
-    Hola!
-    <v-container>
+    <v-container class="mx-auto">
       <Feed />
     </v-container>
   </div>
