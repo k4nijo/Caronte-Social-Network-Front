@@ -25,7 +25,12 @@
       >
     </v-navigation-drawer>
     <v-main min-width="100%" class="d-flex-colum justify-center">
-      <SearchBar />
+      <div v-if="this.$route.name === 'explore'">
+        <SearchBar />
+      </div>
+      <div v-else>
+        <UserBar />
+      </div>
       <Nuxt />
     </v-main>
     <v-navigation-drawer
@@ -53,6 +58,7 @@ export default {
         {
           icon: 'mdi-magnify',
           title: 'EXPLORE',
+          to: '/explore',
         },
         {
           icon: 'mdi-wallet-travel',

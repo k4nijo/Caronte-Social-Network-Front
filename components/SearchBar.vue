@@ -1,23 +1,18 @@
 <template>
-  <v-card width="97%" class="mx-auto">
-    <v-toolbar>
+  <v-card width="97%" class="mx-auto mt-2">
+    <v-toolbar color="primary">
+      <v-icon medium color="white"> mdi-magnify </v-icon>
       <v-text-field
-        tag="inline"
         input
-        prepend-icon="mdi-magnify"
+        label="Search"
         placeholder="Search"
+        class="mt-6 mx-5"
+        background-color="white"
+        filled
+        rounded
+        dense
         clearable
-        class="input"
       ></v-text-field>
-      <v-spacer></v-spacer>
-      <v-btn tag="inline" class="primary px-4">Publish</v-btn>
-      <v-icon class="px-4">mdi-bell-outline</v-icon>
-      <v-avatar
-        color="grey"
-        class="mr-4 px-4"
-        size="45"
-        tag="inline"
-      ></v-avatar>
     </v-toolbar>
   </v-card>
 </template>
@@ -25,14 +20,7 @@
 <script>
 export default {
   name: 'SearchBar',
-  data() {
-    return {}
-  },
 }
 </script>
 
-<style lang="scss" scoped>
-.input {
-  max-width: 40%;
-}
-</style>
+<style lang="scss" scoped></style>
