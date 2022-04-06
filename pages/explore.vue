@@ -1,5 +1,13 @@
 <template>
-  <div></div>
+  <div>
+    <v-card>
+      <v-tabs>
+        <v-tab to="/explore"> Posts </v-tab>
+        <v-tab to="/explore/users"> Users </v-tab>
+      </v-tabs>
+    </v-card>
+    <NuxtChild />
+  </div>
 </template>
 
 <script>

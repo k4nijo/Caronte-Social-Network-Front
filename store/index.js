@@ -1,4 +1,8 @@
-export const state = () => ({})
+export const state = () => ({
+  category: 'general',
+})
+
+export const mutations = {}
 
 export const actions = {
   async login(state, { email, password }) {

@@ -25,7 +25,11 @@
       >
     </v-navigation-drawer>
     <v-main min-width="100%" class="d-flex-colum justify-center">
-      <div v-if="this.$route.name === 'explore'">
+      <div
+        v-if="
+          this.$route.name === 'explore' || this.$route.name === 'explore-users'
+        "
+      >
         <SearchBar />
       </div>
       <div v-else>
