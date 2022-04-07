@@ -1,5 +1,5 @@
 <template>
-  <v-container class="d-flex-colum justify-center">
+  <v-container>
     <v-card
       v-for="(post, i) in feed"
       :key="i"
@@ -48,7 +48,12 @@
       <div v-else></div>
 
       <v-card-actions class="d-flex justify-space-around post">
-        <v-btn class="white" depressed
+        <v-btn
+          :class="
+            post.likes.some((elem) => elem === $auth.user._id) ? '' : 'white'
+          "
+          depressed
+          @click="like(i)"
           ><v-icon color="green" class="mr-4">mdi-chevron-up</v-icon>
           {{ post.likes.length }}</v-btn
         >
@@ -61,7 +66,9 @@
             >mdi-comment-multiple-outline</v-icon
           >{{ post.comments.length }}</v-btn
         >
-        <v-icon color="grey darken-2">mdi-bookmark-outline</v-icon>
+        <v-btn icon
+          ><v-icon color="grey darken-2">mdi-bookmark-outline</v-icon></v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-container>
@@ -77,6 +84,17 @@ export default {
   },
   async fetch() {
     this.feed = await this.$axios.$get('/api/user/feed?sort=-1')
+  },
+  methods: {
+    async like(idx) {
+      await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+        likes: this.$auth.user._id,
+      })
+      this.feed[idx].likes.push(this.$auth.user._id)
+    },
+  },
+  mounted(i) {
+    console.log(i)
   },
 }
 </script>

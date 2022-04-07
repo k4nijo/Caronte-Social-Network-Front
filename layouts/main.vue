@@ -25,7 +25,7 @@
         ></v-footer
       >
     </v-navigation-drawer>
-    <v-main min-width="100%" class="d-flex-colum justify-center">
+    <v-main max-width="800px">
       <div
         v-if="
           this.$route.name === 'explore' || this.$route.name === 'explore-users'
