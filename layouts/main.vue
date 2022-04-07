@@ -1,6 +1,7 @@
 <template>
   <v-app class="main">
-    <v-navigation-drawer app permanent>
+    <v-navigation-drawer app permanent class="marginL">
+      <img src="" alt="" />
       <v-divider></v-divider>
       <v-list dense nav>
         <v-list-item
@@ -40,11 +41,17 @@
     <v-navigation-drawer
       app
       permanent
-      absolute
       right
-      width="20%"
+      width="25%"
+      class="marginR d-flex-colum justify-center"
       height="100%"
-    ></v-navigation-drawer>
+    >
+      <div class="d-flex-colum justify-space-around">
+        <PortfolioResume />
+        <MarketResume />
+        <ConversationsResume />
+      </div>
+    </v-navigation-drawer>
   </v-app>
 </template>
 
@@ -87,6 +94,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.marginL {
+  margin-left: 15%;
+}
+.marginR {
+  margin-right: 15%;
+}
 .main {
   background-color: #f4f6f9;
 }

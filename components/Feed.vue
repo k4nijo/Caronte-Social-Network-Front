@@ -3,20 +3,49 @@
     <v-card
       v-for="(post, i) in feed"
       :key="i"
-      class="ma-1 elevation-4"
-      min-width="60vw"
+      class="ma-1 mx-auto elevation-4"
+      max-width="800px"
     >
-      <v-card-subtitle>
-        <v-avatar color="grey" class="mr-4" size="60"></v-avatar>
-        {{ post.user.username }} · {{ post.timeAgo }}
-      </v-card-subtitle>
-      <v-card-title
-        >{{ post.title }} {{ post.premium }}
-        <v-chip color="brown lighten-2" label small text-color="white">
+      <div class="title pt-4 ml-3 mr-10">
+        <v-avatar color="grey" class="mr-4" size="55"
+          ><img :src="post.user.photo" alt="John"
+        /></v-avatar>
+        <div class="username">{{ post.user.name }} {{ post.user.surname }}</div>
+        <div class="ml-2 timeAgo">
+          @{{ post.user.username }} ·
+          {{ post.timeAgo }}
+        </div>
+        <v-spacer></v-spacer>
+        <v-icon>mdi-dots-horizontal</v-icon>
+      </div>
+
+      <div class="title ml-10 mt-4">
+        <div class="titletext">{{ post.title }}</div>
+        <v-chip
+          :color="
+            post.category === 'general'
+              ? 'brown lighten-2'
+              : post.category === 'fundamental'
+              ? 'blue-grey darken-2'
+              : 'teal lighten-2'
+          "
+          class="ml-4"
+          label
+          small
+          text-color="white"
+        >
           {{ post.category }}
-        </v-chip></v-card-title
-      >
-      <v-card-text>{{ post.summary }}</v-card-text>
+        </v-chip>
+      </div>
+
+      <div class="ml-10 my-4 mr-10">
+        <div class="contentext">{{ post.summary }}</div>
+      </div>
+
+      <div v-if="post.images.length > 0" class="postimg my-1">
+        <img class="imgstyle" :src="post.images[0]" alt="" />
+      </div>
+      <div v-else></div>
 
       <v-card-actions class="d-flex justify-space-around post">
         <v-btn class="white" depressed
@@ -46,7 +75,7 @@ export default {
     }
   },
   async fetch() {
-    this.feed = await this.$axios.$get('/api/user/feed')
+    this.feed = await this.$axios.$get('/api/user/feed?sort=-1')
   },
 }
 </script>
@@ -54,5 +83,22 @@ export default {
 <style lang="scss" scoped>
 .post {
   margin-inline: 8vw;
+}
+.title {
+  display: flex;
+  align-items: center;
+}
+.timeAgo {
+  font-size: 14px;
+  color: #757575;
+}
+.postimg {
+  display: flex;
+  justify-content: center;
+}
+.imgstyle {
+  border-radius: 10px;
+  width: 400px;
+  height: 200px;
 }
 </style>
