@@ -74,14 +74,17 @@ export default {
         {
           icon: 'mdi-wallet-travel',
           title: 'PORTFOLIO',
+          to: '/portfolio',
         },
         {
           icon: 'mdi-scale-balance',
           title: 'MARKET',
+          to: '/market',
         },
         {
           icon: 'mdi-robot-outline',
           title: 'PROFILE',
+          to: '/profile',
         },
         {
           icon: 'mdi-account-multiple-outline',

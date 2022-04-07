@@ -57,10 +57,11 @@
           >{{ post.dislikes.length }}</v-btn
         >
         <v-btn class="white" depressed
-          ><v-icon class="mr-4">mdi-comment-multiple-outline</v-icon
+          ><v-icon class="mr-4" color="grey darken-2"
+            >mdi-comment-multiple-outline</v-icon
           >{{ post.comments.length }}</v-btn
         >
-        <v-icon>mdi-bookmark-outline</v-icon>
+        <v-icon color="grey darken-2">mdi-bookmark-outline</v-icon>
       </v-card-actions>
     </v-card>
   </v-container>
