@@ -50,6 +50,7 @@
         <PortfolioResume />
         <MarketResume />
         <ConversationsResume />
+        {{ this.$vuetify.theme.dark.themes }}
       </div>
     </v-navigation-drawer>
   </v-app>

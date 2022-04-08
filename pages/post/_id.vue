@@ -1,0 +1,12 @@
+<template>
+  <div>
+    {{ this.$route.params }}
+    Hola estoy en la id del post
+  </div>
+</template>
+
+<script>
+export default {}
+</script>
+
+<style lang="scss" scoped></style>

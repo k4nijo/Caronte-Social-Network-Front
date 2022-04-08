@@ -1,118 +1,150 @@
 <template>
   <div>
-    <v-card
-      v-for="(post, i) in feed"
-      :key="i"
-      class="ma-1 mx-auto elevation-4"
-      max-width="800px"
-    >
-      <div class="title pt-4 ml-3 mr-10">
-        <v-avatar color="grey" class="mr-4" size="55"
-          ><img :src="post.user.photo" alt="John"
-        /></v-avatar>
-        <div class="username">{{ post.user.name }} {{ post.user.surname }}</div>
-        <div class="ml-2 timeAgo">
-          @{{ post.user.username }} ·
-          {{ post.timeAgo }}
-        </div>
-        <v-spacer></v-spacer>
-        <v-btn icon small>
-          <v-icon>mdi-dots-horizontal</v-icon>
-        </v-btn>
-      </div>
-
-      <div class="title ml-10 mt-4">
-        <div class="titletext">{{ post.title }}</div>
-        <v-chip
-          :color="
-            post.category === 'general'
-              ? 'brown lighten-2'
-              : post.category === 'fundamental'
-              ? 'blue-grey darken-2'
-              : 'teal lighten-2'
-          "
-          class="ml-4"
-          label
-          small
-          text-color="white"
+    <v-dialog overlay-color="primary" overlay-opacity="0.9" width="800px">
+      <template v-slot:activator="{ on, attrs }">
+        <v-card
+          v-bind="attrs"
+          v-on="on"
+          v-for="(post, i) in feed"
+          :key="i"
+          class="ma-1 mx-auto elevation-4 card"
+          max-width="800px"
+          @click="openPost(i)"
+          :ripple="{ class: 'blue-grey--text text--lighten-5' }"
         >
-          {{ post.category }}
-        </v-chip>
-      </div>
-
-      <div class="ml-10 my-4 mr-10">
-        <div class="contentext">{{ post.summary }}</div>
-      </div>
-
-      <div v-if="post.images.length > 0" class="postimg my-1">
-        <img class="imgstyle" :src="post.images[0]" alt="" />
-      </div>
-      <div v-else></div>
-
-      <v-card-actions class="d-flex justify-space-around post">
-        <div class="btnNum">
-          <v-btn
-            small
-            icon
-            :class="
-              post.likes.some((elem) => elem === $auth.user._id)
-                ? 'green lighten-2'
-                : 'white'
-            "
-            depressed
-            @click="like(post, i)"
-            ><v-icon
-              :color="
-                post.likes.some((elem) => elem === $auth.user._id)
-                  ? 'white'
-                  : 'green'
-              "
-              >mdi-chevron-up</v-icon
-            >
-          </v-btn>
-          {{ post.likes.length }}
-        </div>
-
-        <div class="btnNum">
-          <v-btn
-            small
-            icon
-            :class="
-              post.dislikes.some((elem) => elem === $auth.user._id)
-                ? 'red lighten-2'
-                : 'white'
-            "
-            depressed
-            @click="dislike(post, i)"
-            ><v-icon
-              :color="
-                post.dislikes.some((elem) => elem === $auth.user._id)
-                  ? 'white'
-                  : 'red'
-              "
-              >mdi-chevron-down</v-icon
-            >
-          </v-btn>
-          {{ post.dislikes.length }}
-        </div>
-
-        <div>
-          <v-btn class="white" icon depressed
-            ><v-icon color="grey darken-2">mdi-comment-multiple-outline</v-icon>
-          </v-btn>
-          {{ post.comments.length }}
-        </div>
-
-        <v-btn icon @click="toBookmarks(post, i)">
-          <div v-if="post.bookedTimes.some((elem) => elem === $auth.user._id)">
-            <v-icon color="teal darken-3">mdi-bookmark</v-icon>
+          <div class="title pt-4 ml-3 mr-10">
+            <v-avatar color="grey" class="mr-4" size="55"
+              ><img :src="post.user.photo" alt="John"
+            /></v-avatar>
+            <div class="username">
+              {{ post.user.name }} {{ post.user.surname }}
+            </div>
+            <div class="ml-2 timeAgo">
+              @{{ post.user.username }} ·
+              {{ post.timeAgo }}
+            </div>
+            <v-spacer></v-spacer>
+            <v-btn icon small>
+              <v-icon>mdi-dots-horizontal</v-icon>
+            </v-btn>
           </div>
-          <div v-else>
-            <v-icon>mdi-bookmark-outline</v-icon>
+
+          <div class="title ml-10 mt-4">
+            <div class="titletext">{{ post.title }}</div>
+            <v-chip
+              :color="
+                post.category === 'general'
+                  ? 'brown lighten-2'
+                  : post.category === 'fundamental'
+                  ? 'blue-grey darken-2'
+                  : 'teal lighten-2'
+              "
+              class="ml-4"
+              label
+              small
+              text-color="white"
+            >
+              {{ post.category }}
+            </v-chip>
           </div>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+
+          <div class="ml-10 my-4 mr-10">
+            <div class="contentext">{{ post.summary }}</div>
+          </div>
+
+          <div v-if="post.images.length > 0" class="postimg my-1">
+            <img class="imgstyle" :src="post.images[0]" alt="" />
+          </div>
+          <div v-else></div>
+
+          <v-card-actions class="d-flex justify-space-around post">
+            <div class="btnNum">
+              <v-btn
+                small
+                icon
+                :class="
+                  post.likes.some((elem) => elem === $auth.user._id)
+                    ? 'green lighten-2'
+                    : 'white'
+                "
+                depressed
+                @click.stop="like(post, i)"
+                ><v-icon
+                  :color="
+                    post.likes.some((elem) => elem === $auth.user._id)
+                      ? 'white'
+                      : 'green'
+                  "
+                  >mdi-chevron-up</v-icon
+                >
+              </v-btn>
+              {{ post.likes.length }}
+            </div>
+
+            <div class="btnNum">
+              <v-btn
+                small
+                icon
+                :class="
+                  post.dislikes.some((elem) => elem === $auth.user._id)
+                    ? 'red lighten-2'
+                    : 'white'
+                "
+                depressed
+                @click.stop="dislike(post, i)"
+                ><v-icon
+                  :color="
+                    post.dislikes.some((elem) => elem === $auth.user._id)
+                      ? 'white'
+                      : 'red'
+                  "
+                  >mdi-chevron-down</v-icon
+                >
+              </v-btn>
+              {{ post.dislikes.length }}
+            </div>
+
+            <div>
+              <v-btn class="white" icon depressed
+                ><v-icon color="grey darken-2"
+                  >mdi-comment-multiple-outline</v-icon
+                >
+              </v-btn>
+              {{ post.comments.length }}
+            </div>
+
+            <v-btn icon @click.stop="toBookmarks(post, i)">
+              <div
+                v-if="post.bookedTimes.some((elem) => elem === $auth.user._id)"
+              >
+                <v-icon color="teal darken-3">mdi-bookmark</v-icon>
+              </div>
+              <div v-else>
+                <v-icon>mdi-bookmark-outline</v-icon>
+              </div>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </template>
+      <v-card height="90vh">
+        <div class="title pt-4 ml-3 mr-10">
+          <v-avatar color="grey" size="60" class="mr-4">
+            <img :src="user.photo" alt="" />
+          </v-avatar>
+          <v-card-title>
+            {{ postOpen.title }}
+            {{ postOpen.content }}
+            {{ postOpen.publishDate }}
+            {{ user.name }}
+          </v-card-title>
+          <div class="ml-2 timeAgo"></div>
+          <v-spacer></v-spacer>
+          <v-btn icon>
+            <v-icon>mdi-dots-horizontal</v-icon>
+          </v-btn>
+        </div>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -120,6 +152,12 @@
 export default {
   name: 'PostResume',
   props: ['feed'],
+  data() {
+    return {
+      postOpen: [],
+      user: [],
+    }
+  },
   methods: {
     async like(post, idx) {
       if (post.likes.some((elem) => elem === this.$auth.user._id)) {
@@ -187,6 +225,10 @@ export default {
         this.feed[idx].bookedTimes.push(this.$auth.user._id)
       }
     },
+    async openPost(idx) {
+      this.postOpen = await this.$axios.$get(`/api/post/${this.feed[idx]._id}`)
+      this.user = this.postOpen.user
+    },
   },
 }
 </script>
@@ -214,5 +256,11 @@ export default {
 }
 .btnNum {
   font-size: 14px;
+}
+.card:hover {
+  background-color: rgb(251, 251, 251);
+}
+.v-card--link:focus::before {
+  opacity: 0;
 }
 </style>

@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - front',
-    title: 'front',
+    titleTemplate: '%s',
+    title: 'Caronte',
     htmlAttrs: {
       lang: 'en',
     },
@@ -87,13 +87,25 @@ export default {
       dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.red.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
+        },
+        light: {
+          primary: '#082640',
+          accent: '#082640',
+          secondary: '#306C73',
+          tertiary: colors.pink.base,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3,
+          inherit: colors.green.accent3,
+          anchor: '#306C73',
         },
       },
     },
