@@ -633,8 +633,10 @@ export default {
           content: this.commentContent,
         }
       )
+      const idx = this.feed.findIndex((elem) => elem._id === post._id)
       this.commentContent = ''
       this.postOpenComments.push(comment)
+      this.feed[idx].comments.push(comment)
     },
   },
 }
@@ -675,5 +677,8 @@ export default {
 }
 .mid {
   width: 90%;
+}
+::v-deep .v-dialog {
+  overflow-y: hidden;
 }
 </style>
