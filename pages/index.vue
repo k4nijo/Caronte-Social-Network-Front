@@ -30,5 +30,8 @@ export default {
     font-size: 18px;
     line-height: 30px;
   }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 }
 </style>
