@@ -1,6 +1,6 @@
 <template>
-  <v-card width="97%" class="mx-auto mt-2">
-    <v-toolbar color="primary">
+  <v-card width="97%" class="mx-auto mt-2" max-width="800px">
+    <v-toolbar color="secondary">
       <v-icon medium color="white"> mdi-magnify </v-icon>
       <v-text-field
         input
