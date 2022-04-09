@@ -1,7 +1,15 @@
 <template>
   <v-app class="main">
     <v-navigation-drawer app permanent class="marginL">
-      <img src="" alt="" />
+      <div class="d-flex justify-center">
+        <img
+          class="mt-4"
+          src="caronte-logo.svg"
+          height="200"
+          weight="165"
+          alt=""
+        />
+      </div>
       <v-divider></v-divider>
       <v-list dense nav>
         <v-list-item
@@ -46,9 +54,18 @@
       class="marginR d-flex-colum justify-center"
       height="100%"
     >
-      <div class="d-flex-colum justify-space-around">
+      <div
+        class="d-flex-colum justify-space-around"
+        v-if="this.$route.name === 'explore'"
+      >
         <PortfolioResume />
         <MarketResume />
+        <RankingUsers />
+      </div>
+      <div v-else>
+        <PortfolioResume />
+        <MarketResume />
+        <RankingUsers />
         <ConversationsResume />
       </div>
     </v-navigation-drawer>
@@ -97,13 +114,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.marginL {
-  margin-left: 15%;
-}
-.marginR {
-  margin-right: 15%;
-}
+//.marginL {
+//margin-left: 15%;
+//}
+//.marginR {
+//margin-right: 15%;
+//}
 .main {
-  background-color: #f4f6f9;
+  background-color: #193040;
 }
 </style>
