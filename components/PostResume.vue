@@ -1,6 +1,11 @@
 <template>
   <div>
-    <v-dialog overlay-color="primary" overlay-opacity="0.9" width="800px">
+    <v-dialog
+      scrollable
+      overlay-color="primary"
+      overlay-opacity="0.9"
+      width="800px"
+    >
       <template v-slot:activator="{ on, attrs }">
         <v-card
           v-bind="attrs"
@@ -9,6 +14,7 @@
           :key="i"
           class="ma-1 mx-auto elevation-4 card"
           max-width="800px"
+          height="100%"
           @click="openPost(i)"
           :ripple="{ class: 'blue-grey--text text--lighten-5' }"
         >
@@ -126,7 +132,7 @@
           </v-card-actions>
         </v-card>
       </template>
-      <v-card class="ma-1 mx-auto elevation-4 card" height="90vh">
+      <v-card class="ma-1 mx-auto elevation-4 card" height="100%">
         <div class="title pt-4 ml-3 mr-10">
           <div class="title pt-4 ml-3 mr-10">
             <v-avatar color="grey" class="mr-4" size="55"
@@ -678,7 +684,7 @@ export default {
 .mid {
   width: 90%;
 }
-::v-deep .v-dialog {
-  overflow-y: hidden;
-}
+// ::v-deep .v-dialog {
+//   overflow-y: hidden;
+// }
 </style>
