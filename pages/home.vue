@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <PostResume :feed="feed" />
+    <SnackBarPost />
   </v-container>
 </template>
 

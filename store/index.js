@@ -1,8 +1,13 @@
 export const state = () => ({
   category: 'general',
+  snackbar: false,
 })
 
-export const mutations = {}
+export const mutations = {
+  toggleSnackbar(state) {
+    state.snackbar = !state.snackbar
+  },
+}
 
 export const actions = {
   async login(state, { email, password }) {

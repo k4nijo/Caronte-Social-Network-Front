@@ -298,7 +298,7 @@
           {{ postOpenComments.length }} Comments
         </div>
         <div
-          class="mt-2 ml-5"
+          class="my-2 ml-5"
           flat
           v-for="(comment, i) in postOpenComments"
           :key="i"
