@@ -1,5 +1,12 @@
 <template>
-  <v-snackbar :value.sync="snackToogle" timeout="2000"> {{ text }} </v-snackbar>
+  <v-snackbar :value.sync="snackToogle">
+    {{ text }}
+    <template v-slot:action="{ attrs }">
+      <v-btn color="blue" text v-bind="attrs" @click="changeStatus">
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <script>
@@ -13,6 +20,11 @@ export default {
   computed: {
     snackToogle() {
       return this.$store.state.snackbar
+    },
+  },
+  methods: {
+    changeStatus() {
+      this.$store.commit('toggleSnackbar')
     },
   },
 }
