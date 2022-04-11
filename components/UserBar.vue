@@ -109,6 +109,7 @@ export default {
       imageURL: '',
       premium: false,
       dialog: false,
+      searchQuery: '',
     }
   },
   computed: {
@@ -118,15 +119,6 @@ export default {
         this.titleContent.length > 0 &&
         this.pickedCategory !== ''
       )
-    },
-    imgInp() {
-      if (this.pickedImage !== '') {
-        const [file] = this.pickedImage
-        if (file) {
-          blah.src.blob = URL.createObjectURL(file)
-          this.imageURL = blah.src
-        }
-      }
     },
   },
   methods: {

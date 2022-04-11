@@ -1,58 +1,37 @@
 <template>
   <v-app class="main">
-    <v-navigation-drawer app permanent class="marginL">
-      <img src="" alt="" />
-      <v-divider></v-divider>
-      <v-list dense nav>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content class="grey--text text--darken-1">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <v-footer padless class="mx-2 white grey--text" fixed>
-        <v-card-text class="text-center"
-          >&copy; Caronte {{ new Date().getFullYear() }}</v-card-text
-        ></v-footer
-      >
-    </v-navigation-drawer>
-    <v-main max-width="800px">
-      <div
-        v-if="
-          this.$route.name === 'explore' || this.$route.name === 'explore-users'
-        "
-      >
-        <SearchBar />
-      </div>
-      <div v-else>
-        <UserBar />
-      </div>
-      <Nuxt />
-    </v-main>
-    <v-navigation-drawer
-      app
-      permanent
-      right
-      width="25%"
-      class="marginR d-flex-colum justify-center"
-      height="100%"
-    >
-      <div class="d-flex-colum justify-space-around">
-        <PortfolioResume />
-        <MarketResume />
-        <ConversationsResume />
-        {{ this.$vuetify.theme.dark.themes }}
-      </div>
-    </v-navigation-drawer>
+    <v-container class="pa-0">
+      <v-row>
+        <v-col></v-col>
+        <v-col cols="2" class="">
+          <LeftNavBar />
+        </v-col>
+        <v-col cols="6" class="">
+          <v-main>
+            <v-row>
+              <v-col
+                v-if="
+                  this.$route.name === 'explore' ||
+                  this.$route.name === 'explore-users'
+                "
+              >
+                <SearchBar />
+              </v-col>
+              <v-col v-else>
+                <UserBar />
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <Nuxt />
+              </v-col>
+            </v-row> </v-main
+        ></v-col>
+        <v-col cols="3" class="">
+          <RightNavBar />
+        </v-col>
+      </v-row>
+    </v-container>
   </v-app>
 </template>
 
@@ -98,13 +77,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.marginL {
-  margin-left: 15%;
-}
-.marginR {
-  margin-right: 15%;
-}
 .main {
   background-color: #f4f6f9;
+}
+.marginL {
+  margin-left: 580px;
+}
+.marginR {
+  margin-right: 580px;
+}
+.c1 {
+  background-color: red;
+}
+.c2 {
+  background-color: green;
+}
+.c3 {
+  background-color: yellow;
 }
 </style>
