@@ -1,6 +1,11 @@
 <template>
-  <v-container>
-    <PostResume :feed="feed" />
+  <v-container class="px-0">
+    <v-row>
+      <v-col>
+        <PostResume :feed="feed" />
+      </v-col>
+    </v-row>
+    <SnackBarPost />
   </v-container>
 </template>
 

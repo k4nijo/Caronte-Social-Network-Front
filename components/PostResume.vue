@@ -58,7 +58,10 @@
             <div class="contentext">{{ post.summary }}</div>
           </div>
 
-          <div v-if="post.images.length > 0" class="postimg my-1">
+          <div
+            v-if="post.images[0] !== '' && post.images.length > 0"
+            class="postimg my-1"
+          >
             <img class="imgstyle" :src="post.images[0]" alt="" />
           </div>
           <div v-else></div>
@@ -170,7 +173,10 @@
         <div class="ml-10 my-4 mr-10">
           <div class="contentext">{{ postOpen.content }}</div>
         </div>
-        <div v-if="postOpenImages.length > 0" class="postimg my-1">
+        <div
+          v-if="postOpenImages[0] !== '' && postOpenImages.length > 0"
+          class="postimg my-1"
+        >
           <img class="imgstyle" :src="postOpen.images[0]" alt="" />
         </div>
         <div v-else></div>
@@ -294,11 +300,11 @@
           </v-expansion-panels>
         </div>
         <v-divider></v-divider>
-        <div class="username ml-10 mt-4">
+        <div class="username ml-10 my-4">
           {{ postOpenComments.length }} Comments
         </div>
         <div
-          class="mt-2 ml-5"
+          class="my-2 ml-5"
           flat
           v-for="(comment, i) in postOpenComments"
           :key="i"
