@@ -23,7 +23,11 @@
               ><img :src="post.user.photo" alt="John"
             /></v-avatar>
             <div class="username">
-              {{ post.user.name }} {{ post.user.surname }}
+              <NuxtLink
+                style="text-decoration: none; color: inherit"
+                :to="`/users/${post.user._id}`"
+                >{{ post.user.name }} {{ post.user.surname }}</NuxtLink
+              >
             </div>
             <div class="ml-2 timeAgo">
               @{{ post.user.username }} ·
