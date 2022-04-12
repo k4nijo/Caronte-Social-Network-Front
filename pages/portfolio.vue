@@ -128,7 +128,7 @@ export default {
 
     return { portData: portfolio.data, coins: portfolio.data.coins }
   },
-  created() {
+  beforeMount() {
     for (let i = 0; i < this.portData.coins.length; i++) {
       this.priceDiff.push('')
       this.totalDiff.push('')
@@ -157,9 +157,10 @@ export default {
 
           this.portData = res.data
           this.coins = res.data.coins
+          return
         })
         .catch((err) => console.log(err))
-    }, 3000)
+    }, 3600000)
   },
   beforeDestroy() {
     clearInterval(this.timer)

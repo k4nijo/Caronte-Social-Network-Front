@@ -14,24 +14,18 @@ export default {
   name: 'portfolio-chart',
   data() {
     return {
-      portValues: [],
       chartOptions: {
-        chart: {
-          id: 'vuechart-example',
-        },
         xaxis: {
           categories: [
-            1, 2, 3, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003,
-            1, 2, 3, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003,
-            1, 2, 3, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003,
-            1, 2, 3, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003,
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+            20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
           ],
         },
       },
       series: [
         {
-          name: 'series-1',
-          data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+          name: 'holdings',
+          data: [],
         },
       ],
     }
@@ -42,7 +36,19 @@ export default {
     let newdata = portfolio.data.map(
       (elem) => (elem = parseInt(elem.total.toFixed(0)))
     )
-    return { series: [{ name: 'series-1', data: newdata }] }
+
+    let dates = portfolio.data.map((elem) => {
+      let dateObject = new Date(elem.date * 1000)
+      let humanMonth = dateObject.toLocaleString('en-US', { month: 'short' })
+      let humanDay = dateObject.toLocaleString('en-US', { day: 'numeric' })
+      let together = `${humanDay} ${humanMonth}`
+      return (elem = together)
+    })
+
+    return {
+      series: [{ name: 'holdings', data: newdata }],
+      chartOptions: { xaxis: { categories: dates } },
+    }
   },
 }
 </script>
