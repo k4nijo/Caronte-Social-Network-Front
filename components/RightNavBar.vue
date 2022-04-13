@@ -1,25 +1,43 @@
 <template>
-  <v-navigation-drawer
-    fixed
-    right
-    class="d-flex-colum justify-center glue"
-    height="100%"
-    width="20%"
-  >
-    <div class="d-flex-colum justify-space-around">
-      <PortfolioResume />
-      <MarketResume />
-      <ConversationsResume />
-    </div>
-  </v-navigation-drawer>
+  <v-container>
+    <v-row>
+      <v-col>
+        <PortfolioResume class="glue1" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <MarketResume class="glue2" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <ConversationsResume class="glue3" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'RightNavBar',
+}
 </script>
 
 <style lang="scss" scoped>
-.glue {
-  right: 300px;
+.glue1 {
+  position: fixed;
+  top: 3vh;
+  max-width: 400px;
+}
+.glue2 {
+  position: fixed;
+  top: 36vh;
+  max-width: 400px;
+}
+.glue3 {
+  position: fixed;
+  top: 69vh;
+  max-width: 400px;
 }
 </style>

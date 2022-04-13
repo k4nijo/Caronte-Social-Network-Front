@@ -1,7 +1,11 @@
 <template>
-  <v-card class="mx-auto elevation-1" width="90%" height="20vh">
-    <v-card-title>Conversations</v-card-title>
-  </v-card>
+  <v-container>
+    <v-card flat class="mx-auto titletext" height="20vh">
+      <v-row class="pa-2">
+        <v-col> Conversations </v-col>
+      </v-row>
+    </v-card>
+  </v-container>
 </template>
 
 <script>

@@ -12,7 +12,7 @@
           v-on="on"
           v-for="(post, i) in feed"
           :key="i"
-          class="ma-1 mx-auto elevation-4 card"
+          class="ma-1 mx-auto elevation-2 card"
           max-width="800px"
           height="100%"
           @click="openPost(i)"

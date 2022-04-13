@@ -50,7 +50,106 @@
           <v-btn small class="primary"> Message </v-btn>
         </v-col>
         <v-col align="center">
-          <v-btn small class="primary"> Subscribe </v-btn>
+          <v-dialog
+            max-width="800px"
+            overlay-opacity="0.8"
+            overlay-color="primary"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn small class="primary" v-bind="attrs" v-on="on">
+                Subscribe
+              </v-btn>
+            </template>
+            <v-container class="px-0 py-0">
+              <v-card class="py-12" max-width="800px">
+                <v-row class="mx-0">
+                  <v-col
+                    cols="12"
+                    class="text-center titletext my-4"
+                    style="font-size: 20px"
+                    >Join {{ this.userInfo.name }}'s community by subscribing to
+                    one of these plans</v-col
+                  >
+                </v-row>
+                <v-row justify="space-between" class="mx-0">
+                  <v-col class="ml-2" cols="3">
+                    <v-card class="elevation-16">
+                      <v-row
+                        ><v-col class="titletext text-center"
+                          >Weekly Plan</v-col
+                        ></v-row
+                      >
+                      <v-row>
+                        <v-col class="text-center"> 4,99 $ </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col align="center">
+                          <v-icon x-large color="#58007F">mdi-sail-boat</v-icon>
+                        </v-col>
+                      </v-row>
+                      <v-row
+                        ><v-col align="center"
+                          ><v-btn class="secondary" @click="checkoutWeek"
+                            >Buy</v-btn
+                          >
+                        </v-col></v-row
+                      >
+                    </v-card>
+                  </v-col>
+                  <v-col class="" cols="3"
+                    ><v-card class="elevation-16">
+                      <v-row class="mx-0"
+                        ><v-col class="titletext text-center mx-0 px-0"
+                          >Mensual Plan</v-col
+                        ></v-row
+                      >
+                      <v-row>
+                        <v-col class="text-center"> 18,99 $ </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col align="center">
+                          <v-icon x-large color="#58007F">mdi-airplane</v-icon>
+                        </v-col>
+                      </v-row>
+                      <v-row
+                        ><v-col align="center"
+                          ><v-btn class="secondary" @click="checkoutMonth"
+                            >Buy</v-btn
+                          ></v-col
+                        ></v-row
+                      >
+                    </v-card></v-col
+                  >
+                  <v-col class="mr-2" cols="3"
+                    ><v-card class="elevation-16">
+                      <v-row>
+                        <v-col class="titletext text-center"
+                          >Annual Plan
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col class="text-center"> 199,99 $ </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col align="center">
+                          <v-icon color="#58007F" x-large
+                            >mdi-rocket-launch</v-icon
+                          >
+                        </v-col>
+                      </v-row>
+                      <v-row>
+                        <v-col align="center">
+                          <v-btn class="secondary" @click="checkoutYear">
+                            Buy
+                          </v-btn></v-col
+                        >
+                      </v-row>
+                    </v-card></v-col
+                  >
+                </v-row>
+              </v-card>
+            </v-container>
+          </v-dialog>
         </v-col>
       </v-row>
       <v-row class="pl-10 mt-10">
@@ -81,11 +180,67 @@ export default {
 
     return { userInfo: data }
   },
+  methods: {
+    checkoutWeek() {
+      if (this.$stripe) {
+        const card = this.$stripe.redirectToCheckout({
+          lineItems: [
+            {
+              price: 'price_1Ko2U8FrLXtApQnILdo2HyTi',
+              quantity: 1,
+            },
+          ],
+          mode: 'subscription',
+          successUrl: 'http://localhost:3000/home',
+          cancelUrl: 'http://localhost:3000/home',
+        })
+      }
+    },
+    checkoutMonth() {
+      if (this.$stripe) {
+        const card = this.$stripe.redirectToCheckout({
+          lineItems: [
+            {
+              price: 'price_1Ko2UqFrLXtApQnIRSqnkOeV',
+              quantity: 1,
+            },
+          ],
+          mode: 'subscription',
+          successUrl: 'http://localhost:3000/home',
+          cancelUrl: 'http://localhost:3000/home',
+        })
+      }
+    },
+    checkoutYear() {
+      if (this.$stripe) {
+        const card = this.$stripe.redirectToCheckout({
+          lineItems: [
+            {
+              price: 'price_1Ko2VYFrLXtApQnI6DHhZFyK',
+              quantity: 1,
+            },
+          ],
+          mode: 'subscription',
+          successUrl: 'http://localhost:3000/home',
+          cancelUrl: 'http://localhost:3000/home',
+        })
+      }
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .size {
   max-width: 800px;
+}
+.c1 {
+  background-color: green;
+}
+.c2 {
+  background-color: red;
+}
+.c3 {
+  background-color: blue;
 }
 </style>
