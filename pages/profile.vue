@@ -37,10 +37,10 @@
       </v-row>
       <v-row>
         <v-col class="text-center">{{
-          this.$auth.user.following.length
+          this.$auth.user.followers.length
         }}</v-col>
         <v-col class="text-center">{{
-          this.$auth.user.followers.length
+          this.$auth.user.following.length
         }}</v-col>
         <v-col class="text-center">{{
           this.$auth.user.subscribers.length
@@ -90,6 +90,6 @@ export default {
   font-weight: bold;
 }
 .backG {
-  background-color: #f3f1f1;
+  background-color: #f9f9f9;
 }
 </style>

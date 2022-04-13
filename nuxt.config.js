@@ -39,6 +39,13 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    [
+      'nuxt-stripe-module',
+      {
+        publishableKey:
+          'pk_test_51Ki16CFrLXtApQnIlz70MHadQjYsez81KZuGhOTn94GS0kfiJH6twBNiBhSyD7UMx7zoBeD2ZbK9JCgy9DxtGk3s00KNjix3w6',
+      },
+    ],
   ],
   auth: {
     redirect: {

@@ -1,13 +1,12 @@
 <template>
   <v-app class="main">
-    <v-container class="pa-0">
-      <v-row>
-        <v-col></v-col>
-        <v-col cols="2" class="">
-          <LeftNavBar />
-        </v-col>
-        <v-col cols="6" class="">
-          <v-main>
+    <v-container>
+      <v-main>
+        <v-row>
+          <v-col cols="3">
+            <LeftNavBar />
+          </v-col>
+          <v-col cols="6">
             <v-row>
               <v-col
                 v-if="
@@ -25,12 +24,13 @@
               <v-col>
                 <Nuxt />
               </v-col>
-            </v-row> </v-main
-        ></v-col>
-        <v-col cols="3" class="">
-          <RightNavBar />
-        </v-col>
-      </v-row>
+            </v-row>
+          </v-col>
+          <v-col cols="3">
+            <RightNavBar />
+          </v-col>
+        </v-row>
+      </v-main>
     </v-container>
   </v-app>
 </template>
@@ -39,52 +39,17 @@
 export default {
   name: 'mainLayout',
   data() {
-    return {
-      items: [
-        {
-          icon: 'mdi-home-outline',
-          title: 'HOME',
-          to: '/home',
-        },
-        {
-          icon: 'mdi-magnify',
-          title: 'EXPLORE',
-          to: '/explore',
-        },
-        {
-          icon: 'mdi-wallet-travel',
-          title: 'PORTFOLIO',
-          to: '/portfolio',
-        },
-        {
-          icon: 'mdi-scale-balance',
-          title: 'MARKET',
-          to: '/market',
-        },
-        {
-          icon: 'mdi-robot-outline',
-          title: 'PROFILE',
-          to: '/profile',
-        },
-        {
-          icon: 'mdi-account-multiple-outline',
-          title: 'CHAT',
-        },
-      ],
-    }
+    return {}
   },
 }
 </script>
 
 <style lang="scss" scoped>
+v-app {
+  margin: 0;
+}
 .main {
-  background-color: #f4f6f9;
-}
-.marginL {
-  margin-left: 580px;
-}
-.marginR {
-  margin-right: 580px;
+  background-color: #fafafa;
 }
 .c1 {
   background-color: red;
