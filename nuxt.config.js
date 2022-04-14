@@ -47,6 +47,7 @@ export default {
       },
     ],
   ],
+
   auth: {
     redirect: {
       login: '/',
