@@ -20,8 +20,15 @@
       </v-col>
       <v-col class="test2 line" cols="10">
         <div>
-          {{ avatar ? newUser.user2.name : newUser.user1.name }}
-          {{ avatar ? newUser.user2.surname : newUser.user1.surname }}
+          <span
+            >{{ avatar ? newUser.user2.name : newUser.user1.name }}
+            {{ avatar ? newUser.user2.surname : newUser.user1.surname }}</span
+          >
+          <span class="mention">
+            @{{
+              avatar ? newUser.user2.username : newUser.user1.username
+            }}</span
+          >
         </div>
       </v-col>
       <v-col cols="1" class="mt-4">
@@ -186,5 +193,9 @@ export default {
 .line {
   line-height: 50px;
   font-weight: bold;
+}
+.mention {
+  font-size: 14px;
+  color: #757575;
 }
 </style>
