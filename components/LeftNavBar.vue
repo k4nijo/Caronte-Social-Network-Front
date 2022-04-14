@@ -15,7 +15,12 @@
           </router-link>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row class="mt-4">
+        <v-col align="center">
+          <v-btn small @click="logout"> Logout </v-btn>
+        </v-col>
+      </v-row>
+      <v-row class="mt-4">
         <v-col class="text-center">
           &copy; Caronte {{ new Date().getFullYear() }}
         </v-col>
@@ -62,6 +67,14 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    async logout() {
+      await this.$axios.put(`/api/user/profile`, {
+        online: false,
+      })
+      await this.$auth.logout()
+    },
   },
 }
 </script>

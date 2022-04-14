@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col> Esta pagina tendria todas las room </v-col>
+      <v-col> Esto es el index de rooms </v-col>
     </v-row>
   </v-container>
 </template>

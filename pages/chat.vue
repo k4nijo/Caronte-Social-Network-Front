@@ -1,12 +1,17 @@
 <template>
-  <v-container>
-    <NuxtLink :to="`/chat/${rooms[0]._id}`">
-      <v-card flat>
+  <v-container class="pa-0 mx-auto size">
+    <NuxtLink :to="`/room/${rooms[0]._id}`">
+      <v-card flat class="mx-0">
         <v-row class="mx-0">
-          <v-col
+          <v-col class=""
             ><v-avatar> <img :src="user.photo" alt="" /> </v-avatar
           ></v-col>
-          <v-col class="">@ {{ user.username }} {{ rooms[0]._id }}</v-col>
+          <v-col class=""
+            ><div>@ {{ user.username }}</div>
+            <div>
+              {{ rooms[0].messages[rooms[0].messages.length - 1] }}
+            </div></v-col
+          >
         </v-row>
       </v-card>
     </NuxtLink>
@@ -25,16 +30,22 @@ export default {
   },
   async asyncData({ $auth, $axios }) {
     const rooms = await $axios.get(`/api/user/chatroom`)
+    const userlogged =
+      rooms.data[0].user1._id === $auth.user._id
+        ? rooms.data[0].user2
+        : rooms.data[0].user1
 
+    console.log(rooms.data[0].user1._id === $auth.user._id)
     return {
       rooms: rooms.data,
-      user:
-        rooms.data[0].user1 === $auth.user._id
-          ? rooms.data[0].user1
-          : rooms.data[0].user2,
+      user: userlogged,
     }
   },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.size {
+  max-width: 800px;
+}
+</style>
