@@ -39,6 +39,7 @@
     </v-row>
     <v-card
       v-scroll.self="onScroll"
+      min-height="70vh"
       max-height="70vh"
       class="back pa-2 overflow-y-auto"
     >
@@ -134,9 +135,13 @@ export default {
       const scrollHeight = container.scrollHeight
       container.scrollTop = scrollHeight
     },
+    async cleanNewMessages() {
+      await this.$axios.put(`/api/user/chatroom/${this.$route.params.id}`)
+    },
   },
   mounted() {
     this.scrollToEnd()
+    this.cleanNewMessages()
     this.timer = setInterval(() => {
       this.$axios
         .get(`/api/user/chatroom/${this.$route.params.id}`)
