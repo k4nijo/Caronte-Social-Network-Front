@@ -2,17 +2,29 @@
   <v-container>
     <v-row class="mx-auto">
       <v-col class="" align="end">
-        <v-btn class="text-center" @click="handleCategoryFilter('general')">
+        <v-btn
+          color="brown lighten-2"
+          class="text-center white--text"
+          @click="handleCategoryFilter('general')"
+        >
           General
         </v-btn>
       </v-col>
       <v-col cols="3" class="" align="center">
-        <v-btn class="text-center" @click="handleCategoryFilter('fundamental')">
+        <v-btn
+          class="text-center white--text"
+          color="blue-grey darken-2"
+          @click="handleCategoryFilter('fundamental')"
+        >
           Fundamental
         </v-btn>
       </v-col>
       <v-col class="">
-        <v-btn class="text-center" @click="handleCategoryFilter('technical')">
+        <v-btn
+          class="text-center white--text"
+          color="teal lighten-2"
+          @click="handleCategoryFilter('technical')"
+        >
           Technical
         </v-btn>
       </v-col>
@@ -77,13 +89,7 @@ export default {
   width: 400px;
   height: 200px;
 }
-.test1 {
-  background-color: blue;
-}
-.test2 {
-  background-color: yellow;
-}
-.test3 {
-  background-color: green;
+.btn {
+  background-color: #112233;
 }
 </style>
