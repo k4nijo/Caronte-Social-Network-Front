@@ -1,40 +1,34 @@
 <template>
   <v-container>
-    <v-card flat v-for="(elem, idx) in users" :key="idx" class="d-flex my-4">
-      <div class="username">
-        <v-avatar color="grey" size="55">
-          <img :src="elem.photo" :alt="elem.name" />
-        </v-avatar>
-        {{ elem.name }} {{ elem.surname }}
-        <label class="mention">@{{ elem.username }}</label>
-      </div>
-      <v-spacer></v-spacer>
-      <v-card-actions>
-        <v-btn class="mr-4 primary">Follow</v-btn>
-        <v-icon class="mr-4">mdi-send-outline</v-icon>
-        <v-icon class="mr-4">mdi-dots-horizontal</v-icon>
-      </v-card-actions>
-    </v-card>
+    <v-row v-for="(user, i) in filteredUsers" :key="i">
+      <v-col>
+        <UserCard :user="user" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  data() {
-    return {
-      users: [],
-    }
+  name: 'users',
+  layout: 'main',
+  computed: {
+    ...mapGetters({
+      users: 'users/getUsers',
+      filteredUsers: 'users/getFilteredUsers',
+    }),
   },
-  async asyncData({ $axios }) {
-    let { data } = await $axios.get('/api/users')
-    return { users: data }
+  async fetch({ store }) {
+    await store.dispatch('users/fetchAllUsers')
+  },
+  mounted() {
+    if (!this.users.length) {
+      this.$store.dispatch('users/fetchAllUsers')
+    }
   },
 }
 </script>
 
-<style lang="scss" scoped>
-.mention {
-  font-size: 14px;
-  color: #757575;
-}
-</style>
+<style lang="scss" scoped></style>

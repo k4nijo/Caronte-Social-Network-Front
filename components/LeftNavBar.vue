@@ -65,6 +65,11 @@ export default {
           title: 'CHAT',
           to: '/chat',
         },
+        {
+          icon: 'mdi-account-multiple-outline',
+          title: 'FILTER',
+          to: '/test',
+        },
       ],
     }
   },

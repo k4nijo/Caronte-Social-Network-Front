@@ -10,12 +10,10 @@
         <v-card
           v-bind="attrs"
           v-on="on"
-          v-for="(post, i) in feed"
-          :key="i"
           class="ma-1 mx-auto elevation-2 card"
           max-width="800px"
           height="100%"
-          @click="openPost(i)"
+          @click="openPost"
           :ripple="{ class: 'blue-grey--text text--lighten-5' }"
         >
           <div class="title pt-4 ml-3 mr-10">
@@ -389,7 +387,7 @@
 <script>
 export default {
   name: 'PostResume',
-  props: ['feed'],
+  props: ['post'],
   data() {
     return {
       postOpen: [],
@@ -475,8 +473,8 @@ export default {
         this.feed[idx].bookedTimes.push(this.$auth.user._id)
       }
     },
-    async openPost(idx) {
-      this.postOpen = await this.$axios.$get(`/api/post/${this.feed[idx]._id}`)
+    async openPost() {
+      this.postOpen = await this.$axios.$get(`/api/post/${this.post._id}`)
       this.user = this.postOpen.user
       this.postOpenImages = this.postOpen.images
       this.postOpenLikes = this.postOpen.likes

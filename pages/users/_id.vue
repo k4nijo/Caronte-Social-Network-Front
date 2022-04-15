@@ -157,9 +157,9 @@
       </v-row>
       <v-divider></v-divider>
       <v-row></v-row>
-      <v-row>
+      <v-row v-for="(post, i) in userInfo.posts" :key="i">
         <v-col>
-          <PostResume :feed="userInfo.posts" />
+          <PostResume :post="post" />
         </v-col>
       </v-row>
     </v-card>
