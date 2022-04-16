@@ -1,12 +1,33 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
+      <v-col
+        v-show="$route.name !== 'portfolio' && $route.name !== 'portfolio-pie'"
+      >
         <PortfolioResume class="glue1" />
+      </v-col>
+      <v-col
+        v-show="$route.name === 'portfolio' || $route.name === 'portfolio-pie'"
+      >
+        <News class="glue1" />
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col
+        v-show="$route.name === 'explore' || $route.name === 'explore-users'"
+      >
+        <RankingUsers class="glue2" />
+      </v-col>
+      <v-col v-show="$route.name === 'market'">
+        <News class="glue2" />
+      </v-col>
+      <v-col
+        v-show="
+          $route.name !== 'explore' &&
+          $route.name !== 'explore-users' &&
+          $route.name !== 'market'
+        "
+      >
         <MarketResume class="glue2" />
       </v-col>
     </v-row>

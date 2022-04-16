@@ -4,7 +4,8 @@
       <v-row>
         <v-col class="titletext mb-2 ml-2"> Recent Messages </v-col>
       </v-row>
-      <v-card flat class="mx-0" v-for="(elem, i) in rooms" :key="i">
+      <v-divider></v-divider>
+      <v-card flat class="mx-0 mt-2" v-for="(elem, i) in rooms" :key="i">
         <NuxtLink
           style="text-decoration: none; color: inherit"
           :to="`/room/${elem._id}`"
@@ -105,7 +106,7 @@ export default {
           elem.user1._id === this.$auth.user._id ? elem.user2 : elem.user1)
     )
 
-    this.rooms = roomOrdered.slice(0, 2)
+    this.rooms = roomOrdered.slice(0, 3)
     this.user = userlogged
   },
 }

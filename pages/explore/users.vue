@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row v-for="(user, i) in filteredUsers" :key="i">
+    <v-row v-for="(user, i) in filteredUsers" :key="i" no-gutters>
       <v-col>
         <UserCard :user="user" />
       </v-col>
