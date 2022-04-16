@@ -305,80 +305,89 @@
         <div class="username ml-10 my-4">
           {{ postOpenComments.length }} Comments
         </div>
-        <div
-          class="my-2 ml-5"
+        <v-card
           flat
-          v-for="(comment, i) in postOpenComments"
-          :key="i"
+          v-scroll.self="onScroll"
+          class="overflow-y-auto"
+          max-height="400"
         >
-          <div class="title pt-4 ml-3 mr-10">
-            <v-avatar color="grey" class="mr-4" size="45"
-              ><img :src="comment.user.photo" alt="John"
-            /></v-avatar>
-            <div class="username">
-              {{ comment.user.name }} {{ comment.user.surname }}
+          <div
+            class="my-2 ml-5"
+            flat
+            v-for="(comment, i) in postOpenComments"
+            :key="i"
+          >
+            <div class="title pt-4 ml-3 mr-10">
+              <v-avatar color="grey" class="mr-4" size="45"
+                ><img :src="comment.user.photo" alt="John"
+              /></v-avatar>
+              <div class="username">
+                {{ comment.user.name }} {{ comment.user.surname }}
+              </div>
+              <div class="ml-2 timeAgo">
+                @{{ comment.user.username }} · {{ comment.timeAgo }}
+              </div>
             </div>
-            <div class="ml-2 timeAgo">@{{ comment.user.username }} ·</div>
-          </div>
-          <div class="contentext comment mx-15 my-4">
-            {{ comment.content }}
-          </div>
-          <div class="d-flex justify-space-around post">
-            <div class="btnNum">
-              <v-btn
-                small
-                icon
-                :class="
-                  postOpenComments[i].likes.some(
-                    (elem) => elem === $auth.user._id
-                  )
-                    ? 'green lighten-2'
-                    : 'white'
-                "
-                depressed
-                @click.stop="commentLike(postOpen, postOpenComments, i)"
-                ><v-icon
-                  :color="
+            <div class="contentext comment mx-15 my-4">
+              {{ comment.content }}
+            </div>
+            <div class="d-flex justify-space-around post">
+              <div class="btnNum">
+                <v-btn
+                  small
+                  icon
+                  :class="
                     postOpenComments[i].likes.some(
                       (elem) => elem === $auth.user._id
                     )
-                      ? 'white'
-                      : 'green'
+                      ? 'green lighten-2'
+                      : 'white'
                   "
-                  >mdi-chevron-up</v-icon
-                >
-              </v-btn>
-              {{ comment.likes.length }}
-            </div>
+                  depressed
+                  @click.stop="commentLike(postOpen, postOpenComments, i)"
+                  ><v-icon
+                    :color="
+                      postOpenComments[i].likes.some(
+                        (elem) => elem === $auth.user._id
+                      )
+                        ? 'white'
+                        : 'green'
+                    "
+                    >mdi-chevron-up</v-icon
+                  >
+                </v-btn>
+                {{ comment.likes.length }}
+              </div>
 
-            <div class="btnNum">
-              <v-btn
-                small
-                icon
-                :class="
-                  postOpenComments[i].disLikes.some(
-                    (elem) => elem === $auth.user._id
-                  )
-                    ? 'red lighten-2'
-                    : 'white'
-                "
-                depressed
-                @click.stop="commentDislike(postOpen, postOpenComments, i)"
-                ><v-icon
-                  :color="
+              <div class="btnNum">
+                <v-btn
+                  small
+                  icon
+                  :class="
                     postOpenComments[i].disLikes.some(
                       (elem) => elem === $auth.user._id
                     )
-                      ? 'white'
-                      : 'red'
+                      ? 'red lighten-2'
+                      : 'white'
                   "
-                  >mdi-chevron-down</v-icon
-                >
-              </v-btn>
-              {{ comment.disLikes.length }}
+                  depressed
+                  @click.stop="commentDislike(postOpen, postOpenComments, i)"
+                  ><v-icon
+                    :color="
+                      postOpenComments[i].disLikes.some(
+                        (elem) => elem === $auth.user._id
+                      )
+                        ? 'white'
+                        : 'red'
+                    "
+                    >mdi-chevron-down</v-icon
+                  >
+                </v-btn>
+                {{ comment.disLikes.length }}
+              </div>
             </div>
           </div>
-        </div>
+        </v-card>
       </v-card>
     </v-dialog>
   </div>
@@ -398,6 +407,7 @@ export default {
       postOpenComments: [],
       postOpenBookedTimes: [],
       commentContent: '',
+      scrollInvoked: 0,
     }
   },
   computed: {
@@ -407,6 +417,9 @@ export default {
     },
   },
   methods: {
+    onScroll() {
+      this.scrollInvoked++
+    },
     async like() {
       if (this.post.likes.some((elem) => elem === this.$auth.user._id)) {
         await this.$axios.$put(`/api/post/${this.post._id}`, {

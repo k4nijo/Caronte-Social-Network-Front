@@ -4,7 +4,8 @@
       <v-row class="ml-1">
         <v-col>Latest News</v-col>
       </v-row>
-      <v-row v-for="(notice, i) in news" :key="i">
+      <v-divider></v-divider>
+      <v-row v-for="(notice, i) in news" :key="i" class="mt-2">
         <v-col class="ml-2" cols="2">
           <img :src="notice.imageurl" alt="" width="40px" />
         </v-col>

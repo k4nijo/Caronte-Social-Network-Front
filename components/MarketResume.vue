@@ -9,6 +9,7 @@
           </NuxtLink>
         </v-col>
       </v-row>
+      <v-divider></v-divider>
       <v-row v-for="(coin, i) in topList" :key="i" class="mx-0" align="center">
         <v-col class="" cols="2">
           <v-avatar class="" size="40">

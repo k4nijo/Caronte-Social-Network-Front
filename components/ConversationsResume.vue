@@ -4,7 +4,8 @@
       <v-row>
         <v-col class="titletext mb-2 ml-2"> Recent Messages </v-col>
       </v-row>
-      <v-card flat class="mx-0" v-for="(elem, i) in rooms" :key="i">
+      <v-divider></v-divider>
+      <v-card flat class="mx-0 mt-2" v-for="(elem, i) in rooms" :key="i">
         <NuxtLink
           style="text-decoration: none; color: inherit"
           :to="`/room/${elem._id}`"

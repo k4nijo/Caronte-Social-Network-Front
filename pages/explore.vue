@@ -1,5 +1,5 @@
 <template>
-  <v-container class="px-0 mx-auto">
+  <v-container class="px-0 mx-auto mt-10">
     <v-card max-width="800px" class="px-0 mx-auto">
       <v-row class="mx-0">
         <v-tabs>

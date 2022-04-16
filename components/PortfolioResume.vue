@@ -31,9 +31,10 @@
             </NuxtLink>
           </v-col>
         </v-row>
+        <v-divider></v-divider>
         <v-row>
           <v-col cols="3"></v-col>
-          <v-col class="" align="center"> Balance </v-col>
+          <v-col class="mt-2" align="center"> Balance </v-col>
           <v-col cols="3"></v-col>
         </v-row>
         <v-row class="">

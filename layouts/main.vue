@@ -7,7 +7,7 @@
             <LeftNavBar />
           </v-col>
           <v-col cols="6">
-            <v-row>
+            <v-row class="mb-0">
               <v-col
                 v-if="
                   this.$route.name === 'explore' ||
@@ -20,7 +20,7 @@
                 <UserBar />
               </v-col>
             </v-row>
-            <v-row>
+            <v-row class="mt-20">
               <v-col>
                 <Nuxt />
               </v-col>

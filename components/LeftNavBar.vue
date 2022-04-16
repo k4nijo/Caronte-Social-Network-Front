@@ -1,30 +1,47 @@
 <template>
   <v-container class="glue">
-    <v-card flat max-width="15vw" height="100vh" min-width="180px">
-      <v-row class="" v-for="(item, i) in items" :key="i">
-        <v-col cols="5" class="" align="end">
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-col>
-        <v-col cols="7" class="">
-          <router-link
-            :to="{ path: item.to }"
-            router
-            style="text-decoration: none; color: inherit"
-          >
-            {{ item.title }}
-          </router-link>
-        </v-col>
-      </v-row>
-      <v-row class="mt-4">
-        <v-col align="center">
-          <v-btn small @click="logout"> Logout </v-btn>
-        </v-col>
-      </v-row>
-      <v-row class="mt-4">
-        <v-col class="text-center">
-          &copy; Caronte {{ new Date().getFullYear() }}
-        </v-col>
-      </v-row>
+    <v-card flat max-width="15vw" height="100vh" min-width="180px" class="img">
+      <div class="mb-40">
+        <v-row>
+          <v-col align="center">
+            <img
+              class="mt-4"
+              src="caronte-logo.svg"
+              height="120"
+              weight="120"
+              alt=""
+            />
+          </v-col>
+        </v-row>
+      </div>
+      <div class="mt-10">
+        <v-row class="" v-for="(item, i) in items" :key="i">
+          <v-col cols="5" class="" align="end">
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-col>
+          <v-col cols="7" class="">
+            <router-link
+              :to="{ path: item.to }"
+              router
+              style="text-decoration: none; color: inherit"
+            >
+              {{ item.title }}
+            </router-link>
+          </v-col>
+        </v-row>
+        <v-row class="mt-4">
+          <v-col align="center">
+            <v-btn small icon @click="logout"
+              ><v-icon>mdi-logout</v-icon>LOGOUT
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-row class="mt-4">
+          <v-col class="text-center">
+            &copy; Caronte {{ new Date().getFullYear() }}
+          </v-col>
+        </v-row>
+      </div>
     </v-card>
   </v-container>
 </template>
@@ -92,5 +109,11 @@ export default {
 }
 .c3 {
   background-color: yellow;
+}
+.img {
+  background-image: url(static/circuit5.svg);
+  background-size: 680px 680px;
+  background-position-x: center;
+  background-position-y: 125%;
 }
 </style>
