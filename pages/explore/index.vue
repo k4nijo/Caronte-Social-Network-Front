@@ -29,7 +29,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row v-for="(post, i) in filteredPosts" :key="i">
+    <v-row v-for="(post, i) in filteredPosts" :key="i" no-gutters>
       <v-col>
         <PostResume :post="post" />
       </v-col>

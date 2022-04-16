@@ -387,7 +387,7 @@
 <script>
 export default {
   name: 'PostResume',
-  props: ['post'],
+  props: ['post', 'copy'],
   data() {
     return {
       postOpen: [],
@@ -415,6 +415,7 @@ export default {
         const userIdx = this.post.likes.findIndex(
           (elem) => elem === this.$auth.user._id
         )
+
         this.post.likes.splice(userIdx, 1)
       } else {
         if (this.post.dislikes.some((elem) => elem === this.$auth.user._id)) {

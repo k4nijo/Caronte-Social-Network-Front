@@ -105,7 +105,7 @@ export default {
           elem.user1._id === this.$auth.user._id ? elem.user2 : elem.user1)
     )
 
-    this.rooms = roomOrdered.slice(0, 2)
+    this.rooms = roomOrdered.slice(0, 3)
     this.user = userlogged
   },
 }

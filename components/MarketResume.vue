@@ -3,7 +3,7 @@
     <v-card class="elevation-1">
       <v-row>
         <v-col cols="6" class="ml-2 titletext"> Market Overview </v-col>
-        <v-col cols="5" align="end" class="mt-2 grey--text">
+        <v-col cols="5" align="end" class="grey--text">
           <NuxtLink style="text-decoration: none; color: inherit" to="/market">
             See All
           </NuxtLink>
@@ -49,8 +49,8 @@ export default {
     }
   },
   async fetch() {
-    // const list = await this.$axios.$get('/api/data/topList')
-    // this.topList = list.slice(0, 5)
+    const list = await this.$axios.$get('/api/data/topList')
+    this.topList = list.slice(0, 5)
   },
 }
 </script>

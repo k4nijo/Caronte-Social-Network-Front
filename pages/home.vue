@@ -1,7 +1,7 @@
 <template>
   <v-container class="px-0">
-    <v-row v-for="(post, i) in feed" :key="i">
-      <v-col>
+    <v-row v-for="(post, i) in feed" :key="i" class="my-0" no-gutters>
+      <v-col class="my-0">
         <PostResume :post="post" />
       </v-col>
     </v-row>

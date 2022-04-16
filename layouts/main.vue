@@ -49,7 +49,7 @@ v-app {
   margin: 0;
 }
 .main {
-  background-color: #fafafa;
+  background-color: #f9fbfc;
 }
 .c1 {
   background-color: red;

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row v-for="(post, i) in personalPosts" :key="i">
+    <v-row v-for="(post, i) in personalPosts" :key="i" class="my-0" no-gutters>
       <v-col>
         <PostResume :post="post" />
       </v-col>
