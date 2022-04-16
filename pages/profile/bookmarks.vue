@@ -1,6 +1,10 @@
 <template>
   <v-container>
-    <PostResume :feed="bookmarks" />
+    <v-row v-for="(post, i) in bookmarks" :key="i">
+      <v-col>
+        <PostResume :post="post" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

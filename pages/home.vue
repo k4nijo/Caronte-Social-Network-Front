@@ -1,8 +1,8 @@
 <template>
   <v-container class="px-0">
-    <v-row>
+    <v-row v-for="(post, i) in feed" :key="i">
       <v-col>
-        <PostResume :feed="feed" />
+        <PostResume :post="post" />
       </v-col>
     </v-row>
     <SnackBarPost />
@@ -15,7 +15,7 @@ export default {
   layout: 'main',
   data() {
     return {
-      feed: [],
+      feed: '',
     }
   },
   async asyncData({ $axios }) {

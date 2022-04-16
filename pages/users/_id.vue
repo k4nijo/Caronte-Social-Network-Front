@@ -47,7 +47,7 @@
           <v-btn small class="primary"> Follow </v-btn>
         </v-col>
         <v-col align="center">
-          <v-btn small class="primary"> Message </v-btn>
+          <v-btn small class="primary" @click="toRoom"> Message </v-btn>
         </v-col>
         <v-col align="center">
           <v-dialog
@@ -157,9 +157,9 @@
       </v-row>
       <v-divider></v-divider>
       <v-row></v-row>
-      <v-row>
+      <v-row v-for="(post, i) in userInfo.posts" :key="i">
         <v-col>
-          <PostResume :feed="userInfo.posts" />
+          <PostResume :post="post" />
         </v-col>
       </v-row>
     </v-card>
@@ -181,6 +181,12 @@ export default {
     return { userInfo: data }
   },
   methods: {
+    async toRoom() {
+      const room = await this.$axios.post(`/api/user/chatroom`, {
+        user2: this.userInfo._id,
+      })
+      this.$router.replace(`/room/${room.data._id}`)
+    },
     checkoutWeek() {
       if (this.$stripe) {
         const card = this.$stripe.redirectToCheckout({

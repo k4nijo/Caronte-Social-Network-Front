@@ -1,5 +1,4 @@
 export const state = () => ({
-  category: 'general',
   snackbar: false,
 })
 
