@@ -79,7 +79,7 @@
                     : 'white'
                 "
                 depressed
-                @click.stop="like(post, i)"
+                @click.stop="like"
                 ><v-icon
                   :color="
                     post.likes.some((elem) => elem === $auth.user._id)
@@ -102,7 +102,7 @@
                     : 'white'
                 "
                 depressed
-                @click.stop="dislike(post, i)"
+                @click.stop="dislike"
                 ><v-icon
                   :color="
                     post.dislikes.some((elem) => elem === $auth.user._id)
@@ -124,7 +124,7 @@
               {{ post.comments.length }}
             </div>
 
-            <v-btn icon @click.stop="toBookmarks(post, i)">
+            <v-btn icon @click.stop="toBookmarks">
               <div
                 v-if="post.bookedTimes.some((elem) => elem === $auth.user._id)"
               >
@@ -407,70 +407,70 @@ export default {
     },
   },
   methods: {
-    async like(post, idx) {
-      if (post.likes.some((elem) => elem === this.$auth.user._id)) {
-        await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+    async like() {
+      if (this.post.likes.some((elem) => elem === this.$auth.user._id)) {
+        await this.$axios.$put(`/api/post/${this.post._id}`, {
           likes: this.$auth.user._id,
         })
-        const userIdx = post.likes.findIndex(
+        const userIdx = this.post.likes.findIndex(
           (elem) => elem === this.$auth.user._id
         )
-        this.feed[idx].likes.splice(userIdx, 1)
+        this.post.likes.splice(userIdx, 1)
       } else {
-        if (post.dislikes.some((elem) => elem === this.$auth.user._id)) {
-          await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+        if (this.post.dislikes.some((elem) => elem === this.$auth.user._id)) {
+          await this.$axios.$put(`/api/post/${this.post._id}`, {
             dislikes: this.$auth.user._id,
           })
-          const userIdx = post.dislikes.findIndex(
+          const userIdx = this.post.dislikes.findIndex(
             (elem) => elem === this.$auth.user._id
           )
-          this.feed[idx].dislikes.splice(userIdx, 1)
+          this.post.dislikes.splice(userIdx, 1)
         }
-        await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+        await this.$axios.$put(`/api/post/${this.post._id}`, {
           likes: this.$auth.user._id,
         })
-        this.feed[idx].likes.push(this.$auth.user._id)
+        this.post.likes.push(this.$auth.user._id)
       }
     },
-    async dislike(post, idx) {
-      if (post.dislikes.some((elem) => elem === this.$auth.user._id)) {
-        await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+    async dislike() {
+      if (this.post.dislikes.some((elem) => elem === this.$auth.user._id)) {
+        await this.$axios.$put(`/api/post/${this.post._id}`, {
           dislikes: this.$auth.user._id,
         })
-        const userIdx = post.dislikes.findIndex(
+        const userIdx = this.post.dislikes.findIndex(
           (elem) => elem === this.$auth.user._id
         )
-        this.feed[idx].dislikes.splice(userIdx, 1)
+        this.post.dislikes.splice(userIdx, 1)
       } else {
-        if (post.likes.some((elem) => elem === this.$auth.user._id)) {
-          await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+        if (this.post.likes.some((elem) => elem === this.$auth.user._id)) {
+          await this.$axios.$put(`/api/post/${this.post._id}`, {
             likes: this.$auth.user._id,
           })
-          const userIdx = post.likes.findIndex(
+          const userIdx = this.post.likes.findIndex(
             (elem) => elem === this.$auth.user._id
           )
-          this.feed[idx].likes.splice(userIdx, 1)
+          this.post.likes.splice(userIdx, 1)
         }
-        await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+        await this.$axios.$put(`/api/post/${this.post._id}`, {
           dislikes: this.$auth.user._id,
         })
-        this.feed[idx].dislikes.push(this.$auth.user._id)
+        this.post.dislikes.push(this.$auth.user._id)
       }
     },
-    async toBookmarks(post, idx) {
-      if (post.bookedTimes.some((elem) => elem === this.$auth.user._id)) {
-        await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+    async toBookmarks() {
+      if (this.post.bookedTimes.some((elem) => elem === this.$auth.user._id)) {
+        await this.$axios.$put(`/api/post/${this.post._id}`, {
           bookedTimes: this.$auth.user._id,
         })
-        const userIdx = post.bookedTimes.findIndex(
+        const userIdx = this.post.bookedTimes.findIndex(
           (elem) => elem === this.$auth.user._id
         )
-        this.feed[idx].bookedTimes.splice(userIdx, 1)
+        this.post.bookedTimes.splice(userIdx, 1)
       } else {
-        await this.$axios.$put(`/api/post/${this.feed[idx]._id}`, {
+        await this.$axios.$put(`/api/post/${this.post._id}`, {
           bookedTimes: this.$auth.user._id,
         })
-        this.feed[idx].bookedTimes.push(this.$auth.user._id)
+        this.post.bookedTimes.push(this.$auth.user._id)
       }
     },
     async openPost() {
@@ -492,8 +492,7 @@ export default {
         )
         postLike.splice(userIdx, 1)
 
-        const idx = this.feed.findIndex((elem) => elem._id === post._id)
-        this.feed[idx].likes.splice(idx, 1)
+        this.post.likes.splice(userIdx, 1)
       } else {
         if (
           this.postOpenDislikes.some((elem) => elem === this.$auth.user._id)
@@ -505,16 +504,15 @@ export default {
             (elem) => elem._id === this.$auth.user._id
           )
           this.postOpenDislikes.splice(userIdx, 1)
-          const idx = this.feed.findIndex((elem) => elem._id === post._id)
-          this.feed[idx].dislikes.splice(idx, 1)
+
+          this.post.dislikes.splice(userIdx, 1)
         }
         await this.$axios.$put(`/api/post/${post._id}`, {
           likes: this.$auth.user._id,
         })
         postLike.push(this.$auth.user._id)
 
-        const idx = this.feed.findIndex((elem) => elem._id === post._id)
-        this.feed[idx].likes.push(this.$auth.user._id)
+        this.post.likes.push(this.$auth.user._id)
       }
     },
     async dislikeInd(post, postDislike) {
@@ -527,8 +525,7 @@ export default {
         )
         postDislike.splice(userIdx, 1)
 
-        const idx = this.feed.findIndex((elem) => elem._id === post._id)
-        this.feed[idx].dislikes.splice(idx, 1)
+        this.post.dislikes.splice(userIdx, 1)
       } else {
         if (this.postOpenLikes.some((elem) => elem === this.$auth.user._id)) {
           await this.$axios.$put(`/api/post/${post._id}`, {
@@ -538,16 +535,15 @@ export default {
             (elem) => elem._id === this.$auth.user._id
           )
           this.postOpenLikes.splice(userIdx, 1)
-          const idx = this.feed.findIndex((elem) => elem._id === post._id)
-          this.feed[idx].likes.splice(idx, 1)
+
+          this.post.likes.splice(userIdx, 1)
         }
         await this.$axios.$put(`/api/post/${post._id}`, {
           dislikes: this.$auth.user._id,
         })
         postDislike.push(this.$auth.user._id)
 
-        const idx = this.feed.findIndex((elem) => elem._id === post._id)
-        this.feed[idx].dislikes.push(this.$auth.user._id)
+        this.post.dislikes.push(this.$auth.user._id)
       }
     },
     async toBookmarksInd(post, postBooked) {
@@ -561,15 +557,15 @@ export default {
           (elem) => elem._id === this.$auth.user._id
         )
         postBooked.splice(userIdx, 1)
-        const idx = this.feed.findIndex((elem) => elem._id === post._id)
-        this.feed[idx].bookedTimes.splice(userIdx, 1)
+
+        this.post.bookedTimes.splice(userIdx, 1)
       } else {
         await this.$axios.$put(`/api/post/${post._id}`, {
           bookedTimes: this.$auth.user._id,
         })
         postBooked.push(this.$auth.user._id)
-        const idx = this.feed.findIndex((elem) => elem._id === post._id)
-        this.feed[idx].bookedTimes.push(this.$auth.user._id)
+
+        this.post.bookedTimes.push(this.$auth.user._id)
       }
     },
     async commentLike(post, comment, i) {
@@ -647,10 +643,9 @@ export default {
           content: this.commentContent,
         }
       )
-      const idx = this.feed.findIndex((elem) => elem._id === post._id)
       this.commentContent = ''
-      this.postOpenComments.push(comment)
-      this.feed[idx].comments.push(comment)
+      this.postOpenComments.unshift(comment)
+      this.post.comments.unshift(comment)
     },
   },
 }

@@ -49,8 +49,8 @@ export default {
     }
   },
   async fetch() {
-    const list = await this.$axios.$get('/api/data/topList')
-    this.topList = list.slice(0, 5)
+    // const list = await this.$axios.$get('/api/data/topList')
+    // this.topList = list.slice(0, 5)
   },
 }
 </script>
