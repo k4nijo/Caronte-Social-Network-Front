@@ -1,10 +1,14 @@
 <template>
-  <v-container class="pa-0 mx-auto size">
-    <v-row>
-      <v-col class="titletext mb-2"> {{ rooms.length }} Chat Rooms Open </v-col>
-    </v-row>
-    <v-card flat class="mx-0" v-for="(elem, i) in rooms" :key="i">
+  <v-container class="pa-0 mx-auto size mt-10">
+    <v-card class="mx-0 elevation-1">
+      <v-row>
+        <v-col class="titletext mb-2 ml-2">
+          {{ rooms.length }} Chat Rooms Open
+        </v-col>
+      </v-row>
       <NuxtLink
+        v-for="(elem, i) in rooms"
+        :key="i"
         style="text-decoration: none; color: inherit"
         :to="`/room/${elem._id}`"
       >

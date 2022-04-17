@@ -54,6 +54,7 @@
             >
               {{ post.category }}
             </v-chip>
+            <v-icon color="#F9A825" v-show="post.premium">mdi-medal</v-icon>
           </div>
 
           <div class="ml-10 my-4 mr-10">

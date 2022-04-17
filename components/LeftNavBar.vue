@@ -1,6 +1,11 @@
 <template>
   <v-container class="glue">
-    <v-card flat max-width="15vw" height="100vh" min-width="180px" class="img">
+    <v-card
+      max-width="15vw"
+      height="100vh"
+      min-width="180px"
+      class="img elevation-1"
+    >
       <div class="mb-40">
         <v-row>
           <v-col align="center">

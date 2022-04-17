@@ -1,5 +1,5 @@
 <template>
-  <v-card width="500px">
+  <v-card flat height="100%" class="backCard ma-0 pa-0">
     <v-card-title class="justify-center">Login</v-card-title>
     <v-divider></v-divider>
     <v-card-text>
@@ -51,4 +51,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.backCard {
+  background-image: url(static/cardBack.png);
+  background-size: cover;
+}
+</style>

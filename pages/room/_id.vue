@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-0">
+  <v-container class="pa-0 mt-12">
     <v-row class="pa-0 mx-0">
       <v-col>
         <Messages :room="room.messages" :user="room" />
