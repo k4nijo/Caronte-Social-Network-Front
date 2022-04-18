@@ -22,7 +22,7 @@
           {{ this.userInfo.surname.toUpperCase() }}
         </v-col>
       </v-row>
-      <v-row class="mx-0 text-center pt-0 mt-0">
+      <v-row class="mx-0 text-center pt-0 mt-0 backG">
         <v-col> @ {{ this.userInfo.username }} </v-col>
       </v-row>
       <v-row class="backG transf mx-0">
@@ -193,8 +193,8 @@
         <v-col class="contentext">Latest Contributions</v-col>
       </v-row>
       <v-divider></v-divider>
-      <v-row></v-row>
-      <v-row v-for="(post, i) in userInfo.posts" :key="i">
+      <v-row class="mt-8"></v-row>
+      <v-row v-for="(post, i) in userInfo.posts" :key="i" no-gutters>
         <v-col>
           <PostResume :post="post" />
         </v-col>

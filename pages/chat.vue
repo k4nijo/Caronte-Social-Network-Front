@@ -117,12 +117,6 @@ export default {
 .size {
   max-width: 800px;
 }
-// .test1 {
-//   background-color: blue;
-// }
-// .test2 {
-//   background-color: red;
-// }
 .name {
   font-weight: bold;
 }

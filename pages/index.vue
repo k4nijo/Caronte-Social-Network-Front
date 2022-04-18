@@ -2,10 +2,10 @@
   <v-container class="ma-0">
     <v-row class="c1" justify="center" align="center">
       <v-col cols="12" align="center">
-        <v-card class="c2 elevation-20 backCard ma-0">
+        <v-card class="c2 elevation-20 ma-0">
           <v-row class="mx-0 logH">
-            <v-col class="logL"></v-col>
-            <v-col class="ma-0">
+            <v-col class=""></v-col>
+            <v-col class="ma-0" align="center" justify="center">
               <Login />
             </v-col>
           </v-row>
@@ -31,8 +31,10 @@ export default {
   width: 100vw;
 }
 .c2 {
-  background-color: grey;
-  max-width: 1500px;
+  background-image: url(static/bgbull.jpg);
+  background-size: cover;
+  background-position-y: 100%;
+  max-width: 60vw;
   height: 60vh;
 }
 .test1 {
@@ -43,14 +45,6 @@ export default {
 }
 .logH {
   height: 100%;
-}
-.logL {
-  background-image: url(static/logCardLeft.png);
-  background-size: contain;
-}
-.backCard {
-  background-image: url(static/backGrande.jpg);
-  background-size: cover;
 }
 
 //Aqui ponemos las fuentes personalizadas, quitamos scoped

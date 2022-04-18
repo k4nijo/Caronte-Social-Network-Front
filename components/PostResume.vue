@@ -156,12 +156,12 @@
           </v-btn>
         </div>
         <div class="title ml-10 mt-4">
-          <div class="titletext">{{ postOpen.title }}</div>
+          <div class="titletext">{{ post.title }}</div>
           <v-chip
             :color="
-              postOpen.category === 'general'
+              post.category === 'general'
                 ? 'brown lighten-2'
-                : postOpen.category === 'fundamental'
+                : post.category === 'fundamental'
                 ? 'blue-grey darken-2'
                 : 'teal lighten-2'
             "
@@ -170,8 +170,9 @@
             small
             text-color="white"
           >
-            {{ postOpen.category }}
+            {{ post.category }}
           </v-chip>
+          <v-icon color="#F9A825" v-show="post.premium">mdi-medal</v-icon>
         </div>
         <div class="ml-10 my-4 mr-10">
           <div class="contentext">{{ postOpen.content }}</div>
@@ -318,7 +319,7 @@
             v-for="(comment, i) in postOpenComments"
             :key="i"
           >
-            <div class="title pt-4 ml-3 mr-10">
+            <div class="title ml-3 mr-10">
               <v-avatar color="grey" class="mr-4" size="45"
                 ><img :src="comment.user.photo" alt="John"
               /></v-avatar>

@@ -20,20 +20,24 @@
         </v-row>
       </div>
       <div class="mt-10">
-        <v-row class="" v-for="(item, i) in items" :key="i">
-          <v-col cols="5" class="" align="end">
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-col>
-          <v-col cols="7" class="">
-            <router-link
-              :to="{ path: item.to }"
-              router
-              style="text-decoration: none; color: inherit"
-            >
-              {{ item.title }}
-            </router-link>
-          </v-col>
-        </v-row>
+        <v-list>
+          <v-row class="" v-for="(item, i) in items" :key="i">
+            <v-col class="" align="end">
+              <v-list-item
+                :to="{ path: item.to }"
+                router
+                style="text-decoration: none; color: inherit"
+              >
+                <v-col align="end">
+                  <v-icon>{{ item.icon }}</v-icon>
+                </v-col>
+                <v-col cols="7" class="" align="start">
+                  {{ item.title }}
+                </v-col>
+              </v-list-item>
+            </v-col>
+          </v-row>
+        </v-list>
         <v-row class="mt-4">
           <v-col align="center">
             <v-btn small icon @click="logout"

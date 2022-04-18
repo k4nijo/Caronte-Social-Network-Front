@@ -1,7 +1,7 @@
 <template>
   <v-container class="pa-0">
     <v-row class="mb-2">
-      <v-col class="test1" justify="center" align="center" cols="1">
+      <v-col class="" justify="center" align="center" cols="1">
         <v-badge
           bordered
           bottom
@@ -18,7 +18,7 @@
           </v-avatar>
         </v-badge>
       </v-col>
-      <v-col class="test2 line" cols="10">
+      <v-col class="line" cols="10">
         <div>
           <span
             >{{ avatar ? newUser.user2.name : newUser.user1.name }}
@@ -189,12 +189,6 @@ export default {
 .back {
   background-color: rgb(230, 228, 228);
 }
-// .test1 {
-//   background-color: blue;
-// }
-// .test2 {
-//   background-color: red;
-// }
 .line {
   line-height: 50px;
   font-weight: bold;
