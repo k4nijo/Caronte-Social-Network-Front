@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-10">
     <v-card class="size mx-auto">
       <v-row class="size mx-auto" align="center">
         <v-col cols="7" class="pa-0 text-center titletext">
@@ -72,6 +72,129 @@
           <NuxtChild />
         </v-card>
       </v-row>
+      <v-row>
+        <v-col align="center" v-show="!inCollapse"
+          ><v-btn small class="" @click="collapse"
+            >Collapse<v-icon class="iconsize">mdi-arrow-collapse</v-icon></v-btn
+          ></v-col
+        >
+        <v-col align="center" v-show="inCollapse"
+          ><v-btn small class="" @click="expand"
+            >Expand<v-icon class="iconsize">mdi-arrow-expand</v-icon></v-btn
+          ></v-col
+        >
+        <v-col align="center">
+          <v-dialog v-model="dialog" max-width="600px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                small
+                class="secondary"
+                v-bind="attrs"
+                v-on="on"
+                @click="openDialog"
+                >Add Coin</v-btn
+              >
+            </template>
+            <v-card>
+              <v-container>
+                <v-row>
+                  <v-col cols="4" align="end" class="mt-4">Coin </v-col>
+                  <v-col cols="4">
+                    <v-select
+                      :items="pickCoin"
+                      v-model="pickedCoin"
+                      label="Select"
+                      solo
+                    >
+                    </v-select>
+                  </v-col>
+                  <v-col cols="4"></v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="2" align="start" class="mt-4">Amount</v-col>
+                  <v-col align="start">
+                    <v-text-field v-model="amount"></v-text-field
+                  ></v-col>
+                  <v-col cols="2" align="center" class="mt-4">Price</v-col>
+                  <v-col align="start"
+                    ><v-text-field
+                      v-model="price"
+                      placeholder="$"
+                    ></v-text-field
+                  ></v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="2" class="mt-4">Date</v-col>
+                  <v-col align="start">
+                    <v-menu
+                      ref="menu"
+                      :close-on-content-click="false"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="date"
+                          label="Date"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                          clearable
+                        ></v-text-field>
+                      </template>
+                      <v-date-picker
+                        v-model="date"
+                        :max="
+                          new Date(
+                            Date.now() - new Date().getTimezoneOffset() * 60000
+                          )
+                            .toISOString()
+                            .substr(0, 10)
+                        "
+                        min="1950-01-01"
+                      ></v-date-picker>
+                    </v-menu>
+                  </v-col>
+                  <v-col cols="5"></v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="2" class="mt-4">Time</v-col>
+                  <v-col>
+                    <v-menu
+                      :close-on-content-click="false"
+                      transition="scale-transition"
+                      offset-y
+                      min-width="auto"
+                    >
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field
+                          v-model="hour"
+                          readonly
+                          placeholder="Time"
+                          v-bind="attrs"
+                          v-on="on"
+                          clearable
+                        ></v-text-field>
+                      </template>
+                      <v-time-picker v-model="hour" use-seconds></v-time-picker>
+                    </v-menu>
+                  </v-col>
+                  <v-col></v-col>
+                  <v-col align="center" cols="2">
+                    <v-btn
+                      @click="addCoin"
+                      :disabled="!isDisabled"
+                      class="primary"
+                      >Add</v-btn
+                    >
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card>
+          </v-dialog>
+        </v-col>
+      </v-row>
       <v-row class="size mx-auto mt-6" justify="space-between">
         <v-col class="text-center"> Coin</v-col>
         <v-col class="text-center">Price</v-col>
@@ -82,8 +205,8 @@
       <v-divider></v-divider>
       <v-row v-for="(item, i) in coins" :key="i" class="my-2">
         <v-col class="text-center"
-          ><v-avatar size="25" color="grey" class="mr-2"
-            ><img src="" alt="" /></v-avatar
+          ><v-avatar size="25" color="white" class="mr-2"
+            ><img :src="item.image" alt="" /></v-avatar
           >{{ item.coin }}</v-col
         >
         <v-col class="text-center" v-bind:class="[priceDiff[i] ? 'up' : 'down']"
@@ -93,13 +216,13 @@
           >{{ item.total.toFixed(2) }} $</v-col
         >
         <v-col class="text-center" v-bind:class="[plDiff[i] ? 'up' : 'down']"
-          >{{ item.pl }} $</v-col
+          >{{ item.pl.toFixed(2) }} $</v-col
         >
         <v-col
           class="text-center"
           v-bind:class="[item.change > 0 ? 'up' : 'down']"
         >
-          {{ item.change }} %
+          {{ item.change.toFixed(2) }} %
         </v-col>
       </v-row>
     </v-card>
@@ -107,6 +230,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: 'portfolio',
   layout: 'main',
@@ -120,7 +245,78 @@ export default {
       priceDiff: [],
       totalDiff: [],
       plDiff: [],
+      inCollapse: false,
+      pickCoin: ['BTC', 'ETH', 'ADA'],
+      pickedCoin: '',
+      amount: '',
+      price: '',
+      dialog: false,
+      date: '',
+      hour: '',
     }
+  },
+  computed: {
+    calcDate() {
+      const date = moment(`${this.date}T${this.hour}.000Z`).unix()
+      return date
+    },
+    isDisabled() {
+      return (
+        this.coin !== '' &&
+        this.price !== '' &&
+        this.amount !== '' &&
+        this.date !== '' &&
+        this.hour !== ''
+      )
+    },
+  },
+  methods: {
+    openDialog() {
+      this.dialog = true
+    },
+    async addCoin() {
+      const numAmount = Number(this.amount)
+      const numPrice = Number(this.price)
+
+      const newCoin = await this.$axios.post(
+        `/api/user/portfolio/${this.portData._id}/coin`,
+        {
+          coin: this.pickedCoin,
+          amount: numAmount,
+          price: numPrice,
+          date: this.calcDate,
+        }
+      )
+
+      this.coins.push(newCoin.data.coins[newCoin.data.coins.length - 1])
+      this.dialog = false
+      this.amount = ''
+      this.price = ''
+      this.date = ''
+      this.hour = ''
+      this.pickedCoin = ''
+    },
+    collapse() {
+      const collapse = this.coins.reduce((p, c) => {
+        const index = p.findIndex((elem) => elem.coin === c.coin)
+        if (index !== -1) {
+          p[index].total = p[index].total + c.total
+          p[index].pl = p[index].pl + c.pl
+          p[index].change =
+            (p[index].pl / (p[index].totalInit + c.totalInit)) * 100
+        } else {
+          p.push(c)
+        }
+        return p
+      }, [])
+
+      this.coins = collapse
+      this.inCollapse = true
+    },
+    expand() {
+      this.coins = this.portData.coins
+      this.inCollapse = false
+    },
   },
   async asyncData({ $auth, $axios }) {
     const portId = $auth.user.portfolio[0]._id
@@ -189,11 +385,14 @@ export default {
   border-radius: 8px;
 }
 .up {
-  color: #2e5902;
+  color: #16c784;
   font-weight: bold;
 }
 .down {
-  color: #a62b1f;
+  color: #ea3c46;
   font-weight: bold;
+}
+.iconsize {
+  font-size: 0.9rem;
 }
 </style>

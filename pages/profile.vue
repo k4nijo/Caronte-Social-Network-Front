@@ -1,5 +1,5 @@
 <template>
-  <v-container class="size mx-auto pa-0">
+  <v-container class="size mx-auto pa-0 mt-10">
     <v-card class="pa-0">
       <v-row class="pa-0 mx-0 backG" align="center">
         <v-col cols="12" class="mt-2" align="center">
@@ -17,16 +17,28 @@
       <v-row class="mx-0 text-center pt-0 mt-0 backG">
         <v-col> @ {{ this.$auth.user.username }} </v-col>
       </v-row>
-      <v-row>
+      <v-row class="backG transf mx-0">
         <v-col class="contentext text-center">{{
           this.$auth.user.description
         }}</v-col>
       </v-row>
       <v-row class="mx-0">
-        <v-col class="c2" align="center" v-if="this.$auth.user.premium">
-          <v-icon color="purple" class="mx-auto">mdi-medal</v-icon>
+        <v-col class="" align="end" v-if="this.$auth.user.premium">
+          <v-icon color="#F9A825" class="mx-auto">mdi-medal</v-icon>
         </v-col>
-        <v-col class="text-center">
+        <v-col v-else class="pt-1" align="end" cols="6">
+          <v-progress-circular
+            :rotate="360"
+            :size="40"
+            :width="4"
+            :value="(this.$auth.user.influence / 10) * 100"
+            color="secondary"
+            class="sizeprog"
+          >
+            {{ (this.$auth.user.influence / 10) * 100 }}%
+          </v-progress-circular>
+        </v-col>
+        <v-col class="" align="start">
           {{ this.$auth.user.influence }} Points
         </v-col>
       </v-row>
@@ -77,19 +89,27 @@ export default {
 .size {
   max-width: 800px;
 }
+.sizeprog {
+  font-size: 0.9rem;
+}
 .c1 {
-  background-color: blue;
-}
-.c2 {
-  background-color: yellow;
-}
-.c3 {
   background-color: green;
 }
-.texT {
-  font-weight: bold;
+.c2 {
+  background-color: red;
+}
+.c3 {
+  background-color: blue;
+}
+.followbtn:hover {
+  background-color: rgb(203, 75, 75);
 }
 .backG {
   background-color: #f9f9f9;
+}
+.transf {
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-bottom: 1px solid #082640;
 }
 </style>

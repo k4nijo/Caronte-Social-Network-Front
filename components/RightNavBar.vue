@@ -32,7 +32,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col v-show="$route.name !== 'chat' && $route.name !== 'room-id'">
         <ConversationsResume class="glue3" />
       </v-col>
     </v-row>

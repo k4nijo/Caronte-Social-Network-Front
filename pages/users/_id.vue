@@ -1,6 +1,14 @@
 <template>
-  <v-container class="size mx-auto pa-0">
+  <v-container class="size mx-auto pa-0 mt-10">
     <v-card class="pa-0">
+      <v-row class="backG mx-0">
+        <v-col cols="10"></v-col>
+        <v-col align="center" class="" cols="2"
+          ><v-btn icon small @click="toRouteBefore"
+            ><v-icon class="ml-2">mdi-arrow-left-thin</v-icon></v-btn
+          ></v-col
+        >
+      </v-row>
       <v-row class="pa-0 mx-0 backG" align="center">
         <v-col cols="12" class="mt-2" align="center">
           <v-avatar size="150"
@@ -17,16 +25,28 @@
       <v-row class="mx-0 text-center pt-0 mt-0 backG">
         <v-col> @ {{ this.userInfo.username }} </v-col>
       </v-row>
-      <v-row>
+      <v-row class="backG transf mx-0">
         <v-col class="contentext text-center">{{
           this.userInfo.description
         }}</v-col>
       </v-row>
       <v-row class="mx-0">
-        <v-col class="c2" align="center" v-if="this.userInfo.premium">
-          <v-icon color="purple" class="mx-auto">mdi-medal</v-icon>
+        <v-col class="" align="end" v-if="this.userInfo.premium">
+          <v-icon color="#F9A825" class="mx-auto">mdi-medal</v-icon>
         </v-col>
-        <v-col class="text-center">
+        <v-col v-else class="pt-1" align="end" cols="6">
+          <v-progress-circular
+            :rotate="360"
+            :size="40"
+            :width="4"
+            :value="(this.userInfo.influence / 10) * 100"
+            color="secondary"
+            class="sizeprog"
+          >
+            {{ (this.userInfo.influence / 10) * 100 }}%
+          </v-progress-circular>
+        </v-col>
+        <v-col class="" align="start">
           {{ this.userInfo.influence }} Points
         </v-col>
       </v-row>
@@ -42,9 +62,20 @@
           this.userInfo.subscribers.length
         }}</v-col>
       </v-row>
-      <v-row class="mb-0 size">
-        <v-col align="center">
-          <v-btn small class="primary"> Follow </v-btn>
+      <v-row class="mb-0 size ml-1">
+        <v-col align="center" class="" v-show="!following">
+          <v-btn small class="primary" @click="follow"> Follow </v-btn>
+        </v-col>
+        <v-col align="center" v-show="following">
+          <v-hover v-slot="{ hover }">
+            <v-btn
+              small
+              :class="hover ? 'red--text' : '#B71C1C'"
+              @click="unfollow"
+            >
+              <span v-if="hover">Unfollow</span><span v-else>Following</span>
+            </v-btn>
+          </v-hover>
         </v-col>
         <v-col align="center">
           <v-btn small class="primary" @click="toRoom"> Message </v-btn>
@@ -56,7 +87,13 @@
             overlay-color="primary"
           >
             <template v-slot:activator="{ on, attrs }">
-              <v-btn small class="primary" v-bind="attrs" v-on="on">
+              <v-btn
+                small
+                class="primary"
+                :disabled="suscribed || !userInfo.premium"
+                v-bind="attrs"
+                v-on="on"
+              >
                 Subscribe
               </v-btn>
             </template>
@@ -156,8 +193,8 @@
         <v-col class="contentext">Latest Contributions</v-col>
       </v-row>
       <v-divider></v-divider>
-      <v-row></v-row>
-      <v-row v-for="(post, i) in userInfo.posts" :key="i">
+      <v-row class="mt-8"></v-row>
+      <v-row v-for="(post, i) in userInfo.posts" :key="i" no-gutters>
         <v-col>
           <PostResume :post="post" />
         </v-col>
@@ -180,7 +217,34 @@ export default {
 
     return { userInfo: data }
   },
+  computed: {
+    following() {
+      return this.userInfo.followers.some(
+        (elem) => elem === this.$auth.user._id
+      )
+    },
+    suscribed() {
+      return this.userInfo.subscribers.some(
+        (elem) => elem === this.$auth.user._id
+      )
+    },
+  },
   methods: {
+    async follow() {
+      await this.$axios.post(`/api/user/following/${this.userInfo._id}`)
+      this.userInfo.followers.push(this.$auth.user._id)
+    },
+    async unfollow() {
+      await this.$axios.delete(`/api/user/following/${this.userInfo._id}`)
+
+      const idx = this.userInfo.followers.findIndex(
+        (elem) => elem === this.$auth.user._id
+      )
+      this.userInfo.followers.splice(idx, 1)
+    },
+    toRouteBefore() {
+      this.$router.back()
+    },
     async toRoom() {
       const room = await this.$axios.post(`/api/user/chatroom`, {
         user2: this.userInfo._id,
@@ -198,7 +262,7 @@ export default {
           ],
           mode: 'subscription',
           successUrl: 'http://localhost:3000/home',
-          cancelUrl: 'http://localhost:3000/home',
+          cancelUrl: `http://localhost:3000/users/${this.userInfo._id}`,
         })
       }
     },
@@ -213,7 +277,7 @@ export default {
           ],
           mode: 'subscription',
           successUrl: 'http://localhost:3000/home',
-          cancelUrl: 'http://localhost:3000/home',
+          cancelUrl: `http://localhost:3000/users/${this.userInfo._id}`,
         })
       }
     },
@@ -228,7 +292,7 @@ export default {
           ],
           mode: 'subscription',
           successUrl: 'http://localhost:3000/home',
-          cancelUrl: 'http://localhost:3000/home',
+          cancelUrl: `http://localhost:3000/users/${this.userInfo._id}`,
         })
       }
     },
@@ -240,6 +304,9 @@ export default {
 .size {
   max-width: 800px;
 }
+.sizeprog {
+  font-size: 0.9rem;
+}
 .c1 {
   background-color: green;
 }
@@ -248,5 +315,16 @@ export default {
 }
 .c3 {
   background-color: blue;
+}
+.followbtn:hover {
+  background-color: rgb(203, 75, 75);
+}
+.backG {
+  background-color: #f9f9f9;
+}
+.transf {
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-bottom: 1px solid #082640;
 }
 </style>

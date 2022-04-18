@@ -3,9 +3,9 @@ export function filterPosts(filter, posts) {
 
   // Filter category
   if (filter.category !== '') {
-    const filtered = filteredList.filter(
-      (post) => post.category === filter.category
-    )
+    const filtered = filteredList
+      .filter((post) => post.category === filter.category)
+      .sort((a, b) => a.publishDate - b.publishDate)
     filteredList = filtered
   }
 
@@ -18,7 +18,7 @@ export function filterPosts(filter, posts) {
         filteredList[i].title !== null &&
         filteredList[i].title.toLowerCase().includes(searchTerm)
       ) {
-        searchList.push(filteredList[i])
+        searchList.unshift(filteredList[i])
       }
     }
     filteredList = searchList

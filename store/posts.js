@@ -67,6 +67,8 @@ export const mutations = {
   },
   orderPosts(state) {
     const posts = [...state.filteredPosts]
-    state.filteredPosts = Filters.orderPosts(state.filter.order, posts)
+    state.filteredPosts = Filters.orderPosts(state.filter.order, posts).sort(
+      (a, b) => b.publishDate - a.publishDate
+    )
   },
 }
