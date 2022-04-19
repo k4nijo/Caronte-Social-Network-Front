@@ -94,6 +94,7 @@ export default {
     },
   },
   mounted() {
+  console.log(parseInt(process.env.premiumLvl))
     this.premiumLvl = parseInt(process.env.premiumLvl)
   },
 }
