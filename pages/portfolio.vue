@@ -351,7 +351,7 @@ export default {
           return
         })
         .catch((err) => console.log(err))
-    }, process.env.time)
+    }, parseInt(process.env.time))
   },
   beforeDestroy() {
     clearInterval(this.timer)
