@@ -82,7 +82,7 @@ export default {
   layout: 'main',
   data() {
     return {
-      premiumLvl: '',
+      premiumLvl: process.env.premiumLvl,
     }
   },
   computed: {
@@ -94,7 +94,7 @@ export default {
     },
   },
   mounted() {
-  console.log(parseInt(process.env.premiumLvl))
+  console.log(parseInt(process.env.premiumLvl), 'hola')
     this.premiumLvl = parseInt(process.env.premiumLvl)
   },
 }
