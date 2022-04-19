@@ -82,7 +82,7 @@ export default {
   layout: 'main',
   data() {
     return {
-      premiumLvl: '',
+      premiumLvl: process.env.premiumLvl,
     }
   },
   computed: {

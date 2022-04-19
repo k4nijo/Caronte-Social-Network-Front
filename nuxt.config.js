@@ -89,6 +89,11 @@ export default {
     baseURL: process.env.apiURL,
   },
 
+  env: {
+    time: process.env.time,
+    premiumLvl: process.env.premiumLvl,
+  },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
