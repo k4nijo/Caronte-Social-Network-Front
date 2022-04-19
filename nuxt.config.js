@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - front',
-    title: 'front',
+    titleTemplate: '%s',
+    title: 'Caronte',
     htmlAttrs: {
       lang: 'en',
     },
@@ -16,12 +16,13 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
+  loading: false,
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~plugins/apexchart.js', ssr: false }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -38,7 +39,15 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    [
+      'nuxt-stripe-module',
+      {
+        publishableKey:
+          'pk_test_51Ki16CFrLXtApQnIlz70MHadQjYsez81KZuGhOTn94GS0kfiJH6twBNiBhSyD7UMx7zoBeD2ZbK9JCgy9DxtGk3s00KNjix3w6',
+      },
+    ],
   ],
+
   auth: {
     redirect: {
       login: '/',
@@ -87,13 +96,25 @@ export default {
       dark: false,
       themes: {
         dark: {
-          primary: colors.blue.darken2,
+          primary: colors.red.darken2,
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
+        },
+        light: {
+          primary: '#082640',
+          accent: '#082640',
+          secondary: '#306C73',
+          tertiary: colors.pink.base,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3,
+          inherit: colors.green.accent3,
+          anchor: '#306C73',
         },
       },
     },

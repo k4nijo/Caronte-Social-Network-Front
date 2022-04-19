@@ -1,4 +1,12 @@
-export const state = () => ({})
+export const state = () => ({
+  snackbar: false,
+})
+
+export const mutations = {
+  toggleSnackbar(state) {
+    state.snackbar = !state.snackbar
+  },
+}
 
 export const actions = {
   async login(state, { email, password }) {

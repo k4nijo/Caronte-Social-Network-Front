@@ -1,39 +1,37 @@
 <template>
   <v-app class="main">
-    <v-navigation-drawer app permanent>
-      <v-divider></v-divider>
-      <v-list dense nav>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content class="grey--text text--darken-1">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <v-footer padless class="mx-2 white grey--text" fixed>
-        <v-card-text class="text-center"
-          >&copy; Caronte {{ new Date().getFullYear() }}</v-card-text
-        ></v-footer
-      >
-    </v-navigation-drawer>
-    <v-main min-width="100%">
-      <Nuxt />
-    </v-main>
-    <v-navigation-drawer
-      app
-      permanent
-      absolute
-      right
-      width="20%"
-    ></v-navigation-drawer>
+    <v-container>
+      <v-main>
+        <v-row>
+          <v-col cols="3">
+            <LeftNavBar />
+          </v-col>
+          <v-col cols="6">
+            <v-row class="mb-0">
+              <v-col
+                v-if="
+                  this.$route.name === 'explore' ||
+                  this.$route.name === 'explore-users'
+                "
+              >
+                <SearchBar />
+              </v-col>
+              <v-col v-else>
+                <UserBar />
+              </v-col>
+            </v-row>
+            <v-row class="mt-20">
+              <v-col>
+                <Nuxt />
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col cols="3">
+            <RightNavBar />
+          </v-col>
+        </v-row>
+      </v-main>
+    </v-container>
   </v-app>
 </template>
 
@@ -41,41 +39,25 @@
 export default {
   name: 'mainLayout',
   data() {
-    return {
-      items: [
-        {
-          icon: 'mdi-home-outline',
-          title: 'HOME',
-          to: '/home',
-        },
-        {
-          icon: 'mdi-magnify',
-          title: 'EXPLORE',
-        },
-        {
-          icon: 'mdi-wallet-travel',
-          title: 'PORTFOLIO',
-        },
-        {
-          icon: 'mdi-scale-balance',
-          title: 'MARKET',
-        },
-        {
-          icon: 'mdi-robot-outline',
-          title: 'PROFILE',
-        },
-        {
-          icon: 'mdi-account-multiple-outline',
-          title: 'CHAT',
-        },
-      ],
-    }
+    return {}
   },
 }
 </script>
 
 <style lang="scss" scoped>
+v-app {
+  margin: 0;
+}
 .main {
-  background-color: #f4f6f9;
+  background-color: #f9fbfc;
+}
+.c1 {
+  background-color: red;
+}
+.c2 {
+  background-color: green;
+}
+.c3 {
+  background-color: yellow;
 }
 </style>

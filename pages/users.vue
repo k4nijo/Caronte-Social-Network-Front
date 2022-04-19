@@ -1,12 +1,13 @@
 <template>
-  <v-card>
-    <v-card-title>Sign Up</v-card-title>
-  </v-card>
+  <div>
+    <NuxtChild />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'SignUp',
+  name: 'users',
+  layout: 'main',
 }
 </script>
 
