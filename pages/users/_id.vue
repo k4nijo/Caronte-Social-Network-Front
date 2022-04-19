@@ -270,8 +270,8 @@ export default {
             },
           ],
           mode: 'subscription',
-          successUrl: 'http://localhost:3000/home',
-          cancelUrl: `http://localhost:3000/users/${this.userInfo._id}`,
+          successUrl: 'https://caronte.netlify.app/home',
+          cancelUrl: `https://caronte.netlify.app/users/${this.userInfo._id}`,
         })
       }
     },
@@ -285,8 +285,8 @@ export default {
             },
           ],
           mode: 'subscription',
-          successUrl: 'http://localhost:3000/home',
-          cancelUrl: `http://localhost:3000/users/${this.userInfo._id}`,
+          successUrl: 'https://caronte.netlify.app/home',
+          cancelUrl: `https://caronte.netlify.app/users/${this.userInfo._id}`,
         })
       }
     },
@@ -300,8 +300,8 @@ export default {
             },
           ],
           mode: 'subscription',
-          successUrl: 'http://localhost:3000/home',
-          cancelUrl: `http://localhost:3000/users/${this.userInfo._id}`,
+          successUrl: 'https://caronte.netlify.app/home',
+          cancelUrl: `https://caronte.netlify.app/users/${this.userInfo._id}`,
         })
       }
     },
