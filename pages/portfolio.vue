@@ -325,7 +325,7 @@ export default {
       this.totalDiff.push('')
       this.plDiff.push('')
     }
-
+    console.log('hola', process.env.time)
     this.timer = setInterval(() => {
       const portId = this.$auth.user.portfolio[0]._id
 
@@ -351,7 +351,7 @@ export default {
           return
         })
         .catch((err) => console.log(err))
-    }, 3600000)
+    }, process.env.time)
   },
   beforeDestroy() {
     clearInterval(this.timer)
