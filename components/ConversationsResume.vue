@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-0 mx-auto size">
+  <v-container class="pa-0 mx-auto ">
     <v-card class="elevation-1">
       <v-row>
         <v-col class="titletext ml-2"> Recent Messages </v-col>
@@ -113,9 +113,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.size {
-  max-width: 800px;
-}
+
 .name {
   font-weight: bold;
 }
