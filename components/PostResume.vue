@@ -175,7 +175,7 @@
           <v-icon color="#F9A825" v-show="post.premium">mdi-medal</v-icon>
         </div>
         <div class="ml-10 my-4 mr-10">
-          <div class="contentext">{{ postOpen.content }}</div>
+          <div class="contentext lineheight">{{ postOpen.content }}</div>
         </div>
         <div
           v-if="postOpenImages[0] !== '' && postOpenImages.length > 0"
@@ -326,9 +326,7 @@
               <div class="username">
                 {{ comment.user.name }} {{ comment.user.surname }}
               </div>
-              <div class="ml-2 timeAgo">
-                @{{ comment.user.username }} · {{ comment.timeAgo }}
-              </div>
+              <div class="ml-2 timeAgo">@{{ comment.user.username }}</div>
             </div>
             <div class="contentext comment mx-15 my-4">
               {{ comment.content }}
@@ -668,6 +666,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.username {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 550;
+}
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 550;
+}
 .post {
   margin-inline: 8vw;
 }
@@ -702,6 +712,9 @@ export default {
 }
 .mid {
   width: 90%;
+}
+.lineheight {
+  line-height: 2rem;
 }
 // ::v-deep .v-dialog {
 //   overflow-y: hidden;

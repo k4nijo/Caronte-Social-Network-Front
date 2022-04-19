@@ -11,7 +11,7 @@
           <v-col align="center">
             <img
               class="mt-4"
-              src="caronte-logo.svg"
+              src="../static/caronte-logo.svg"
               height="120"
               weight="120"
               alt=""

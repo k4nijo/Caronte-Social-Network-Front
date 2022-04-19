@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="white elevation-1">
     <v-row v-for="(user, i) in filteredUsers" :key="i" no-gutters>
       <v-col>
         <UserCard :user="user" />

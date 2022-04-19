@@ -1,28 +1,43 @@
 <template>
   <v-container class="size mx-auto pa-0 mt-10">
     <v-card class="pa-0">
-      <v-row class="pa-0 mx-0 backG" align="center">
-        <v-col cols="12" class="mt-2" align="center">
-          <v-avatar size="150"
+      <v-row class="pa-0 mx-0 blue-grey lighten-3" align="center">
+        <v-col cols="12" class="mt-2" align="start">
+          <v-avatar size="150" class="avatarBorder"
             ><img :src="this.$auth.user.photo" alt=""
           /></v-avatar>
         </v-col>
       </v-row>
-      <v-row class="mx-0 text-center backG" align="center">
-        <v-col class="text-center titletext texT">
-          {{ this.$auth.user.name.toUpperCase() }}
-          {{ this.$auth.user.surname.toUpperCase() }}
+      <v-row class="mx-0" align="center">
+        <v-col class="titletext texT">
+          {{ name }}
+          {{ surname }}
         </v-col>
       </v-row>
-      <v-row class="mx-0 text-center pt-0 mt-0 backG">
+      <v-row class="mx-0 pt-0 mt-0">
         <v-col> @ {{ this.$auth.user.username }} </v-col>
       </v-row>
-      <v-row class="backG transf mx-0">
-        <v-col class="contentext text-center">{{
-          this.$auth.user.description
-        }}</v-col>
-      </v-row>
       <v-row class="mx-0">
+        <v-col class="contentext">{{ this.$auth.user.description }}</v-col>
+      </v-row>
+      <v-row class="ml-2 mb-1">
+        <v-col cols="2">
+          <span class="numStyle">{{ this.$auth.user.followers.length }}</span>
+          Followers</v-col
+        >
+        <v-col cols="2"
+          ><span class="numStyle">{{ this.$auth.user.following.length }}</span>
+          Following</v-col
+        >
+        <v-col cols="2"
+          ><span class="numStyle">{{
+            this.$auth.user.subscribers.length
+          }}</span>
+          Subscribers</v-col
+        >
+      </v-row>
+      <v-divider></v-divider>
+      <v-row class="mx-0 my-2">
         <v-col class="" align="end" v-if="this.$auth.user.premium">
           <v-icon color="#F9A825" class="mx-auto">mdi-medal</v-icon>
         </v-col>
@@ -31,33 +46,19 @@
             :rotate="360"
             :size="40"
             :width="4"
-            :value="(this.$auth.user.influence / 10) * 100"
+            :value="(this.$auth.user.influence / premiumLvl) * 100"
             color="secondary"
             class="sizeprog"
           >
-            {{ (this.$auth.user.influence / 10) * 100 }}%
+            {{ (this.$auth.user.influence / premiumLvl) * 100 }}%
           </v-progress-circular>
         </v-col>
         <v-col class="" align="start">
           {{ this.$auth.user.influence }} Points
         </v-col>
       </v-row>
-      <v-row justify="space-between">
-        <v-col class="text-center pa-2">FOLLOWERS</v-col>
-        <v-col class="text-center pa-2">FOLLOWING</v-col>
-        <v-col class="text-center pa-2">SUBSCRIBERS</v-col>
-      </v-row>
-      <v-row>
-        <v-col class="text-center">{{
-          this.$auth.user.followers.length
-        }}</v-col>
-        <v-col class="text-center">{{
-          this.$auth.user.following.length
-        }}</v-col>
-        <v-col class="text-center">{{
-          this.$auth.user.subscribers.length
-        }}</v-col>
-      </v-row>
+      <v-divider></v-divider>
+
       <v-row class="mx-0 my-6">
         <v-tabs>
           <v-col>
@@ -80,36 +81,44 @@ export default {
   name: 'profile',
   layout: 'main',
   data() {
-    return {}
+    return {
+      premiumLvl: '',
+    }
+  },
+  computed: {
+    name() {
+      return this.$auth.user.name.toUpperCase()
+    },
+    surname() {
+      return this.$auth.user.surname.toUpperCase()
+    },
+  },
+  mounted() {
+    this.premiumLvl = process.env.premiumLvl
   },
 }
 </script>
 
 <style lang="scss" scoped>
+.avatarBorder {
+  border: 4px solid white;
+}
+.numStyle {
+  font-weight: bold;
+}
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+}
 .size {
   max-width: 800px;
 }
 .sizeprog {
   font-size: 0.9rem;
 }
-.c1 {
-  background-color: green;
-}
-.c2 {
-  background-color: red;
-}
-.c3 {
-  background-color: blue;
-}
 .followbtn:hover {
   background-color: rgb(203, 75, 75);
-}
-.backG {
-  background-color: #f9f9f9;
-}
-.transf {
-  border-bottom-right-radius: 100px;
-  border-bottom-left-radius: 100px;
-  border-bottom: 1px solid #082640;
 }
 </style>

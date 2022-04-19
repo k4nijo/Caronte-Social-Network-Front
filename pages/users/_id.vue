@@ -1,68 +1,26 @@
 <template>
   <v-container class="size mx-auto pa-0 mt-10">
-    <v-card class="pa-0">
-      <v-row class="backG mx-0">
+    <v-card flat class="pa-0">
+      <v-row class="mx-0">
         <v-col cols="10"></v-col>
-        <v-col align="center" class="" cols="2"
+        <v-col align="center" cols="2"
           ><v-btn icon small @click="toRouteBefore"
             ><v-icon class="ml-2">mdi-arrow-left-thin</v-icon></v-btn
           ></v-col
         >
       </v-row>
-      <v-row class="pa-0 mx-0 backG" align="center">
-        <v-col cols="12" class="mt-2" align="center">
-          <v-avatar size="150"
+      <v-row class="pa-0 mx-0 blue-grey lighten-3 pt-10" align="center">
+        <v-col cols="12" class="mt-2" align="start">
+          <v-avatar size="150" class="avatarBorder"
             ><img :src="this.userInfo.photo" alt=""
           /></v-avatar>
         </v-col>
       </v-row>
-      <v-row class="mx-0 text-center backG" align="center">
-        <v-col class="text-center titletext texT">
-          {{ this.userInfo.name.toUpperCase() }}
-          {{ this.userInfo.surname.toUpperCase() }}
+      <v-row class="mx-0 ml-2">
+        <v-col cols="6" class="titletext texT">
+          {{ name }}
+          {{ surname }}
         </v-col>
-      </v-row>
-      <v-row class="mx-0 text-center pt-0 mt-0 backG">
-        <v-col> @ {{ this.userInfo.username }} </v-col>
-      </v-row>
-      <v-row class="backG transf mx-0">
-        <v-col class="contentext text-center">{{
-          this.userInfo.description
-        }}</v-col>
-      </v-row>
-      <v-row class="mx-0">
-        <v-col class="" align="end" v-if="this.userInfo.premium">
-          <v-icon color="#F9A825" class="mx-auto">mdi-medal</v-icon>
-        </v-col>
-        <v-col v-else class="pt-1" align="end" cols="6">
-          <v-progress-circular
-            :rotate="360"
-            :size="40"
-            :width="4"
-            :value="(this.userInfo.influence / 10) * 100"
-            color="secondary"
-            class="sizeprog"
-          >
-            {{ (this.userInfo.influence / 10) * 100 }}%
-          </v-progress-circular>
-        </v-col>
-        <v-col class="" align="start">
-          {{ this.userInfo.influence }} Points
-        </v-col>
-      </v-row>
-      <v-row justify="space-between">
-        <v-col class="text-center pa-2">FOLLOWERS</v-col>
-        <v-col class="text-center pa-2">FOLLOWING</v-col>
-        <v-col class="text-center pa-2">SUBSCRIBERS</v-col>
-      </v-row>
-      <v-row>
-        <v-col class="text-center">{{ this.userInfo.followers.length }}</v-col>
-        <v-col class="text-center">{{ this.userInfo.following.length }}</v-col>
-        <v-col class="text-center">{{
-          this.userInfo.subscribers.length
-        }}</v-col>
-      </v-row>
-      <v-row class="mb-0 size ml-1">
         <v-col align="center" class="" v-show="!following">
           <v-btn small class="primary" @click="follow"> Follow </v-btn>
         </v-col>
@@ -189,8 +147,52 @@
           </v-dialog>
         </v-col>
       </v-row>
-      <v-row class="pl-10 mt-10">
-        <v-col class="contentext">Latest Contributions</v-col>
+      <v-row class="mx-0 ml-2 pt-0 mt-0">
+        <v-col> @ {{ this.userInfo.username }} </v-col>
+      </v-row>
+      <v-row class="mx-0 ml-2">
+        <v-col class="">{{ this.userInfo.description }}</v-col>
+      </v-row>
+      <v-row class="ml-2 mb-1">
+        <v-col cols="2">
+          <span class="numStyle">{{ this.userInfo.followers.length }}</span>
+          Followers</v-col
+        >
+        <v-col cols="2"
+          ><span class="numStyle">{{ this.userInfo.following.length }}</span>
+          Following</v-col
+        >
+        <v-col cols="2"
+          ><span class="numStyle">{{ this.userInfo.subscribers.length }}</span>
+          Subscribers</v-col
+        >
+      </v-row>
+      <v-divider></v-divider>
+      <v-row class="mx-0 my-1">
+        <v-col class="" align="end" v-if="this.userInfo.premium">
+          <v-icon color="#F9A825" class="mx-auto mt-2">mdi-medal</v-icon>
+        </v-col>
+        <v-col v-else class="" align="end" cols="6">
+          <v-progress-circular
+            :rotate="360"
+            :size="40"
+            :width="4"
+            :value="(this.userInfo.influence / premiumLvl) * 100"
+            color="secondary"
+            class="sizeprog"
+          >
+            {{ (this.userInfo.influence / premiumLvl) * 100 }}%
+          </v-progress-circular>
+        </v-col>
+        <v-col class="mt-2" align="start">
+          {{ this.userInfo.influence }} Points
+        </v-col>
+      </v-row>
+      <v-divider></v-divider>
+
+      <v-row class="mb-0 size ml-1"> </v-row>
+      <v-row class="pl-3 mt-10">
+        <v-col class="titletext">Latest Contributions</v-col>
       </v-row>
       <v-divider></v-divider>
       <v-row class="mt-8"></v-row>
@@ -210,6 +212,7 @@ export default {
   data() {
     return {
       userInfo: [],
+      premiumLvl: '',
     }
   },
   async asyncData({ $axios, route }) {
@@ -227,6 +230,12 @@ export default {
       return this.userInfo.subscribers.some(
         (elem) => elem === this.$auth.user._id
       )
+    },
+    name() {
+      return this.userInfo.name.toUpperCase()
+    },
+    surname() {
+      return this.userInfo.surname.toUpperCase()
     },
   },
   methods: {
@@ -297,24 +306,27 @@ export default {
       }
     },
   },
+  mounted() {
+    this.premiumLvl = process.env.premiumLvl
+  },
 }
 </script>
 
 <style lang="scss" scoped>
+.numStyle {
+  font-weight: bold;
+}
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+}
 .size {
   max-width: 800px;
 }
 .sizeprog {
   font-size: 0.9rem;
-}
-.c1 {
-  background-color: green;
-}
-.c2 {
-  background-color: red;
-}
-.c3 {
-  background-color: blue;
 }
 .followbtn:hover {
   background-color: rgb(203, 75, 75);
@@ -322,9 +334,7 @@ export default {
 .backG {
   background-color: #f9f9f9;
 }
-.transf {
-  border-bottom-right-radius: 100px;
-  border-bottom-left-radius: 100px;
-  border-bottom: 1px solid #082640;
+.avatarBorder {
+  border: 4px solid white;
 }
 </style>

@@ -13,6 +13,8 @@
           <v-card-text>
             <v-form class="mx-10">
               <v-text-field
+                class="white--text"
+                color="white"
                 label="Email"
                 v-model="email"
                 prepend-icon="mdi-email-outline"
@@ -20,6 +22,7 @@
               ></v-text-field>
               <v-text-field
                 v-model="password"
+                color="white"
                 label="Password"
                 :type="passVisible ? 'text' : 'Password'"
                 prepend-icon="mdi-lock-outline"
@@ -31,7 +34,8 @@
             </v-form>
           </v-card-text>
           <v-card-subtitle class="text-center"
-            >Don't you have an account yet? <a href="">Register now</a>
+            >Don't you have an account yet?
+            <a href="" class="grey--text">Register now</a>
           </v-card-subtitle>
           <v-card-actions>
             <v-btn color="primary" class="mx-auto" @click="login">Login</v-btn>

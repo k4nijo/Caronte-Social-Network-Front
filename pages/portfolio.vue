@@ -1,28 +1,21 @@
 <template>
   <v-container class="mt-10">
     <v-card class="size mx-auto">
-      <v-row class="size mx-auto" align="center">
-        <v-col cols="7" class="pa-0 text-center titletext">
+      <v-row class="size mx-auto">
+        <v-col cols="7" class="titletext">
           {{ portData.title }}
         </v-col>
-        <v-col cols="5" align="end">
-          <v-btn small class="primary"> New Portfolio</v-btn>
-        </v-col>
+        <!-- <v-col cols="5" align="center">
+          <v-btn small class="secondary"> New Portfolio</v-btn>
+        </v-col> -->
       </v-row>
-      <v-row>
-        <v-col cols="12" class="ml-10"> Description </v-col>
-      </v-row>
-      <v-row
-        class="size mx-auto mb-2 text-center"
-        justify="center"
-        align="center"
-      >
-        <v-col class="contentext" cols="12">
+      <v-row class="size mx-auto">
+        <v-col class="contentext mx-0" cols="12">
           {{ portData.description }}
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" class="ml-10"> Overview </v-col>
+        <v-col cols="12" class="ml-2"><strong>Overview</strong> </v-col>
       </v-row>
       <v-divider></v-divider>
       <v-row
@@ -97,8 +90,11 @@
             </template>
             <v-card>
               <v-container>
+                <v-row class="primary">
+                  <v-col cols="12"></v-col>
+                </v-row>
                 <v-row>
-                  <v-col cols="4" align="end" class="mt-4">Coin </v-col>
+                  <v-col cols="2" class="mt-4">Coin </v-col>
                   <v-col cols="4">
                     <v-select
                       :items="pickCoin"
@@ -111,12 +107,12 @@
                   <v-col cols="4"></v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="2" align="start" class="mt-4">Amount</v-col>
-                  <v-col align="start">
+                  <v-col cols="2" class="mt-7">Amount:</v-col>
+                  <v-col cols="4">
                     <v-text-field v-model="amount"></v-text-field
                   ></v-col>
-                  <v-col cols="2" align="center" class="mt-4">Price</v-col>
-                  <v-col align="start"
+                  <v-col cols="2" align="center" class="mt-7">Price:</v-col>
+                  <v-col cols="4"
                     ><v-text-field
                       v-model="price"
                       placeholder="$"
@@ -124,8 +120,8 @@
                   ></v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="2" class="mt-4">Date</v-col>
-                  <v-col align="start">
+                  <v-col cols="2" class="mt-7">Date:</v-col>
+                  <v-col>
                     <v-menu
                       ref="menu"
                       :close-on-content-click="false"
@@ -156,10 +152,7 @@
                       ></v-date-picker>
                     </v-menu>
                   </v-col>
-                  <v-col cols="5"></v-col>
-                </v-row>
-                <v-row>
-                  <v-col cols="2" class="mt-4">Time</v-col>
+                  <v-col cols="2" class="mt-7" align="center">Time:</v-col>
                   <v-col>
                     <v-menu
                       :close-on-content-click="false"
@@ -180,6 +173,8 @@
                       <v-time-picker v-model="hour" use-seconds></v-time-picker>
                     </v-menu>
                   </v-col>
+                </v-row>
+                <v-row>
                   <v-col></v-col>
                   <v-col align="center" cols="2">
                     <v-btn
@@ -368,14 +363,11 @@ export default {
 .size {
   max-width: 800px;
 }
-.c1 {
-  background-color: yellow;
-}
-.c2 {
-  background-color: red;
-}
-.c3 {
-  background-color: green;
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
 }
 .overview {
   background-color: rgb(250, 250, 250);

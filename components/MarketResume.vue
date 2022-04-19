@@ -3,7 +3,7 @@
     <v-card class="elevation-1">
       <v-row>
         <v-col cols="6" class="ml-2 titletext"> Market Overview </v-col>
-        <v-col cols="5" align="end" class="grey--text">
+        <v-col cols="5" align="end" class="grey--text mt-1">
           <NuxtLink style="text-decoration: none; color: inherit" to="/market">
             See All
           </NuxtLink>
@@ -76,16 +76,10 @@ export default {
   font-size: 0.9rem;
   font-weight: 450;
 }
-// .test1 {
-//   background-color: red;
-// }
-// .test2 {
-//   background-color: blue;
-// }
-// .test3 {
-//   background-color: green;
-// }
-// .test4 {
-//   background-color: yellow;
-// }
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+}
 </style>
