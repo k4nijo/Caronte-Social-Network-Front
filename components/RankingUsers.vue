@@ -2,7 +2,7 @@
   <v-container class="mx-auto pa-0">
     <v-card class="elevation-1">
       <v-row class="">
-        <v-col cols="6" class="ml-2">Ranking User</v-col>
+        <v-col cols="6" class="ml-2 titletext">Top Contributors</v-col>
         <v-col cols="5" align="end"
           ><NuxtLink
             to="/explore/users"
@@ -54,6 +54,12 @@ export default {
 .rankingtitle {
   background-color: #193040;
   border-radius: 3px;
+}
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
 }
 .c2 {
   background-color: #f4f6f9;

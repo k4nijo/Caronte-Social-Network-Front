@@ -1,8 +1,10 @@
 <template>
   <v-container>
-    <v-row class="mx-auto">
+    <v-row class="mx-auto mb-1">
       <v-col class="" align="end">
         <v-btn
+          width="146.56px"
+          height="36px"
           color="brown lighten-2"
           class="text-center white--text"
           @click="handleCategoryFilter('general')"
@@ -12,6 +14,8 @@
       </v-col>
       <v-col cols="3" class="" align="center">
         <v-btn
+          width="146.56px"
+          height="36px"
           class="text-center white--text"
           color="blue-grey darken-2"
           @click="handleCategoryFilter('fundamental')"
@@ -21,6 +25,8 @@
       </v-col>
       <v-col class="">
         <v-btn
+          width="146.56px"
+          height="36px"
           class="text-center white--text"
           color="teal lighten-2"
           @click="handleCategoryFilter('technical')"

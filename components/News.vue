@@ -1,8 +1,8 @@
 <template>
   <v-container class="mx-auto pa-0">
     <v-card class="elevation-1">
-      <v-row class="ml-1">
-        <v-col>Latest News</v-col>
+      <v-row class="ml-0">
+        <v-col><span class="titletext mx-0">Latest News</span> </v-col>
       </v-row>
       <v-divider></v-divider>
       <v-row v-for="(notice, i) in news" :key="i" class="mt-2">
@@ -35,4 +35,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
+}
+</style>

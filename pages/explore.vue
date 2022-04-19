@@ -1,13 +1,13 @@
 <template>
-  <v-container class="px-0 mx-auto mt-10">
-    <v-card max-width="800px" class="px-0 mx-auto">
-      <v-row class="mx-0">
-        <v-tabs>
-          <v-col>
-            <v-tab to="/explore"> Posts </v-tab>
+  <v-container class="px-0 mx-auto mt-10 tabClass">
+    <v-card flat max-width="800px" class="px-0 mx-auto tabClass">
+      <v-row class="mx-0 tabClass">
+        <v-tabs class="tabClass">
+          <v-col class="tabClass">
+            <v-tab to="/explore" class="tabClass"> Posts </v-tab>
           </v-col>
-          <v-col>
-            <v-tab to="/explore/users"> Users </v-tab>
+          <v-col class="tabClass">
+            <v-tab to="/explore/users" class="tabClass"> Users </v-tab>
           </v-col>
         </v-tabs>
       </v-row>
@@ -28,4 +28,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tabClass {
+  background-color: #f9fbfc;
+}
+</style>

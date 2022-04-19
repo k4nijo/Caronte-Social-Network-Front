@@ -1,8 +1,8 @@
 <template>
   <v-container class="ma-0">
-    <v-row class="c1" justify="center" align="center">
+    <v-row class="c3" justify="center" align="center">
       <v-col cols="12" align="center">
-        <v-card class="c2 elevation-20 ma-0">
+        <v-card class="c4 elevation-20 ma-0">
           <v-row class="mx-0 logH">
             <v-col class=""></v-col>
             <v-col class="ma-0" align="center" justify="center">
@@ -23,25 +23,19 @@ export default {
 </script>
 
 <style lang="scss">
-.c1 {
+.c3 {
   background-image: url(static/backlog.jpg);
   background-size: 100%;
   background-position-y: 60%;
   height: 100vh;
   width: 100vw;
 }
-.c2 {
+.c4 {
   background-image: url(static/bgbull.jpg);
   background-size: cover;
   background-position-y: 100%;
-  max-width: 60vw;
+  max-width: 50vw;
   height: 60vh;
-}
-.test1 {
-  background-color: blue;
-}
-.test2 {
-  background-color: red;
 }
 .logH {
   height: 100%;

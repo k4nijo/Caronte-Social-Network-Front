@@ -22,7 +22,7 @@
           <v-col cols="7" class="titletext">
             {{ portfolio.title }}
           </v-col>
-          <v-col cols="5" align="end" class="grey--text">
+          <v-col cols="5" align="end" class="grey--text mt-1">
             <NuxtLink
               style="text-decoration: none; color: inherit"
               to="/portfolio"
@@ -51,7 +51,7 @@
           >
             ({{ ((portfolio.balance / portfolio.holding) * 100).toFixed(2) }} %)
           </v-col>
-          <v-col cols="3"></v-col>
+          <v-col cols="2"></v-col>
         </v-row>
         <v-row class="px-6">
           <v-sparkline
@@ -126,18 +126,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.test1 {
-  background-color: red;
-}
-.test2 {
-  background-color: blue;
-}
-.test3 {
-  background-color: green;
-}
-.test4 {
-  background-color: yellow;
-}
 .holding {
   font-size: 1.4rem;
 }
@@ -149,5 +137,11 @@ export default {
 }
 .negative {
   color: #ea3c46;
+}
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
 }
 </style>

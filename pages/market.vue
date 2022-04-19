@@ -2,12 +2,12 @@
   <v-container class="size pa-0 mx-auto mt-10">
     <v-card>
       <v-row class="primary mx-0">
-        <v-col cols="2" class="titletext text-center white--text">
-          Chart View
+        <v-col cols="2" class="titletext white--text">
+          <b>Chart View</b>
         </v-col>
         <v-col cols="10"></v-col>
       </v-row>
-      <v-card class="elevation-1 mt-4">
+      <v-card flat class="mt-4">
         <v-row>
           <v-col align="center"
             ><v-btn icon @click="tradingBTC"
@@ -71,7 +71,9 @@
       </v-row>
 
       <v-row class="mx-0 px-0 titletext subr">
-        <v-col cols="12"> Market Values </v-col>
+        <v-col cols="12" class="text--white"
+          ><strong>Market Values</strong></v-col
+        >
       </v-row>
       <v-row class="mx-0 px-0">
         <v-col cols="6" class=""
@@ -83,7 +85,7 @@
       </v-row>
       <v-row>
         <v-col>
-          <v-card>
+          <v-card flat>
             <v-row v-for="(coin, i) in gainers" :key="i">
               <v-col cols="2" align="center"
                 ><v-avatar class="" size="40">
@@ -112,7 +114,7 @@
           </v-card>
         </v-col>
         <v-col>
-          <v-card>
+          <v-card flat>
             <v-row v-for="(coin, i) in trending" :key="i">
               <v-col align="center" cols="2"
                 ><v-avatar class="" size="40">

@@ -2,10 +2,10 @@
   <v-container class="pa-0 mx-auto size">
     <v-card class="elevation-1">
       <v-row>
-        <v-col class="titletext mb-2 ml-2"> Recent Messages </v-col>
+        <v-col class="titletext ml-2"> Recent Messages </v-col>
       </v-row>
       <v-divider></v-divider>
-      <v-card flat class="mx-0 mt-2" v-for="(elem, i) in rooms" :key="i">
+      <v-card flat class="mx-0 mt-4" v-for="(elem, i) in rooms" :key="i">
         <NuxtLink
           style="text-decoration: none; color: inherit"
           :to="`/room/${elem._id}`"
@@ -116,12 +116,6 @@ export default {
 .size {
   max-width: 800px;
 }
-.test1 {
-  background-color: blue;
-}
-.test2 {
-  background-color: red;
-}
 .name {
   font-weight: bold;
 }
@@ -134,5 +128,11 @@ export default {
 }
 .date {
   font-size: 0.8rem;
+}
+.titletext {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 600;
 }
 </style>

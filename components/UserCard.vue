@@ -7,6 +7,7 @@
       <NuxtLink
         :to="`/users/${user._id}`"
         style="text-decoration: none; color: inherit"
+        class="username"
       >
         {{ user.name }} {{ user.surname }}
         <label class="mention">@{{ user.username }}</label>
@@ -19,11 +20,17 @@
         class="primary"
         v-show="!following && user._id !== this.$auth.user._id"
         width="93.11px"
+        height="28px"
       >
         Follow
       </v-btn>
       <v-hover v-slot="{ hover }" v-show="following">
-        <v-btn small :class="hover ? 'red--text' : '#B71C1C'">
+        <v-btn
+          width="93.11px"
+          height="28px"
+          small
+          :class="hover ? 'red--text' : '#B71C1C'"
+        >
           <span v-if="hover">Unfollow</span><span v-else>Following</span>
         </v-btn>
       </v-hover>
@@ -53,5 +60,11 @@ export default {
 .mention {
   font-size: 14px;
   color: #757575;
+}
+.username {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 500;
 }
 </style>
