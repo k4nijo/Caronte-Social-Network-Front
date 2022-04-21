@@ -351,7 +351,7 @@ export default {
           return
         })
         .catch((err) => console.log(err))
-    }, 3600000)
+    }, process.env.time)
   },
   beforeDestroy() {
     clearInterval(this.timer)
