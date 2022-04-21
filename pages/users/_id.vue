@@ -95,7 +95,7 @@
                     ><v-card class="elevation-16">
                       <v-row class="mx-0"
                         ><v-col class="titletext text-center mx-0 px-0"
-                          >Mensual Plan</v-col
+                          >Monthly Plan</v-col
                         ></v-row
                       >
                       <v-row>
