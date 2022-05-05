@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <v-container class="pa-0 mx-auto">
     <v-dialog
       scrollable
       overlay-color="primary"
       overlay-opacity="0.9"
       width="800px"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-card
+      <template v-slot:activator="{ on, attrs }" class="px-0">
+        <PostCard v-bind="attrs" v-on="on" :post="post" />
+        <!-- <v-card
           v-bind="attrs"
           v-on="on"
           class="ma-1 mx-auto elevation-2 card"
@@ -136,7 +137,7 @@
               </div>
             </v-btn>
           </v-card-actions>
-        </v-card>
+        </v-card> -->
       </template>
       <v-card class="ma-1 mx-auto elevation-4 card" height="100%">
         <div class="title pt-4 ml-3 mr-10">
@@ -390,7 +391,7 @@
         </v-card>
       </v-card>
     </v-dialog>
-  </div>
+  </v-container>
 </template>
 
 <script>
