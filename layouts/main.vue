@@ -1,13 +1,13 @@
 <template>
   <v-app class="main">
-    <v-container>
+    <v-container class="px-0">
       <v-main>
-        <v-row>
-          <v-col cols="3">
+        <v-row class="mx-0">
+          <!-- <v-col cols="3">
             <LeftNavBar />
-          </v-col>
-          <v-col cols="6">
-            <v-row class="mb-0">
+          </v-col> -->
+          <v-col class="px-0">
+            <!-- <v-row class="mb-0">
               <v-col
                 v-if="
                   this.$route.name === 'explore' ||
@@ -19,16 +19,16 @@
               <v-col v-else>
                 <UserBar />
               </v-col>
-            </v-row>
-            <v-row class="mt-20">
-              <v-col>
+            </v-row> -->
+            <v-row class="mx-0">
+              <v-col class="px-0">
                 <Nuxt />
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="3">
+          <!-- <v-col cols="3">
             <RightNavBar />
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-main>
     </v-container>
