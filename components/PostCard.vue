@@ -2,7 +2,7 @@
   <v-container class="px-0">
     <v-card max-width="566px" min-width="320px" class="mx-auto elevation-0">
       <v-row class="mx-0" align="center">
-        <v-col :cols="window.innerWidth < 400 ? 2 : 1">
+        <v-col :cols="resizeTitle ? 2 : 1">
           <v-avatar>
             <img :src="post.user.photo" alt="" />
           </v-avatar>
@@ -76,9 +76,13 @@ export default {
     onResize() {
       this.isMobile = window.innerWidth < 600
     },
+    resizeTitle() {
+      window.innerWidth < 400
+    },
   },
   mounted() {
     this.onResize()
+    this.resizeTitle()
   },
 }
 </script>
