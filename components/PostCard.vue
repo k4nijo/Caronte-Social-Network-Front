@@ -1,13 +1,17 @@
 <template>
   <v-container class="px-0">
-    <v-card max-width="566px" min-width="320px" class="mx-auto elevation-0">
+    <v-card
+      max-width="566px"
+      min-width="320px"
+      class="mx-auto my-1 elevation-0 cardStyle"
+    >
       <v-row class="mx-0" align="center">
-        <v-col :cols="resizeTitle ? 2 : 1">
+        <v-col cols="2" class="colwidth">
           <v-avatar>
             <img :src="post.user.photo" alt="" />
           </v-avatar>
         </v-col>
-        <v-col class="ml-1" align="start"
+        <v-col align="start"
           ><NuxtLink
             style="text-decoration: none; color: inherit"
             :to="`/users/${post.user._id}`"
@@ -24,7 +28,11 @@
       </v-row>
 
       <v-row class="mx-0">
-        <v-col>{{ post.category }}</v-col>
+        <v-col
+          ><v-chip label :color="categoryColor" class="white--text" small>{{
+            post.category
+          }}</v-chip></v-col
+        >
         <v-col>{{ post.premium }}</v-col>
       </v-row>
 
@@ -71,18 +79,21 @@ export default {
     name() {
       return `${this.post.user.name} ${this.post.user.surname}`
     },
+    categoryColor() {
+      return this.post.category === 'fundamental'
+        ? 'blue-grey darken-2'
+        : this.post.category === 'technical'
+        ? 'teal lighten-2'
+        : 'brown lighten-2'
+    },
   },
   methods: {
     onResize() {
       this.isMobile = window.innerWidth < 600
     },
-    resizeTitle() {
-      window.innerWidth < 400
-    },
   },
   mounted() {
     this.onResize()
-    this.resizeTitle()
   },
 }
 </script>
@@ -102,5 +113,8 @@ export default {
 }
 .colcolor4 {
   background-color: orange;
+}
+.colwidth {
+  max-width: 55px;
 }
 </style>
