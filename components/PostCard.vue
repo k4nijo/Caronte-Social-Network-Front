@@ -28,12 +28,14 @@
       </v-row>
 
       <v-row class="mx-0">
-        <v-col
+        <v-col cols="3" class="colCategoryWidth pr-0" v-show="isPremium"
           ><v-chip label :color="categoryColor" class="white--text" small>{{
             post.category
           }}</v-chip></v-col
         >
-        <v-col>{{ post.premium }}</v-col>
+        <v-col align="start" class="pl-0"
+          ><v-icon color="#F9A825" align="start">mdi-medal</v-icon></v-col
+        >
       </v-row>
 
       <v-row class="mx-0">
@@ -86,6 +88,9 @@ export default {
         ? 'teal lighten-2'
         : 'brown lighten-2'
     },
+    isPremium() {
+      return this.post.premium
+    },
   },
   methods: {
     onResize() {
@@ -116,5 +121,8 @@ export default {
 }
 .colwidth {
   max-width: 55px;
+}
+.colCategoryWidth {
+  max-width: 110px;
 }
 </style>
