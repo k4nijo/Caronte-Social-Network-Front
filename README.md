@@ -1,68 +1,58 @@
-# front
+# CARONTE SOCIAL NETWORK 
+## Related Repository
+FRONT: [CaronteAPI](https://github.com/jonathanpmelian/Caronte-Social-Network-API)
+## Description
+Caronte is a crypto social network where investors can share information, stay tune to market updates, create their own portfolio and based on a premium system, subscribe to the content of the most influential users.
 
-## Build Setup
+## Future updates🌱
+Actually working on:
+- Responsive Design.
+- Performance Updates.
+## Badges
+![image](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
+![image](https://img.shields.io/badge/Babel-F9DC3E?style=for-the-badge&logo=babel&logoColor=white)
+![image](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![image](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![image](https://img.shields.io/badge/nuxt.js-00C58E?style=for-the-badge&logo=nuxtdotjs&logoColor=white)
+![image](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![image](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![image](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white)
+![image](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)
+![image](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![image](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
+![image](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![image](https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=white)
+![image](https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white)
+![image](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![image](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+![download](https://user-images.githubusercontent.com/89730979/166665796-c420e650-3a1c-4d90-9521-c666bb397354.jpg)
+![apexchart](https://user-images.githubusercontent.com/89730979/166665931-d9e6c356-e1a4-412c-af51-33168feb5b80.png)
+![420_vertical_fullcolour_darkblueflashgreen](https://user-images.githubusercontent.com/89730979/166666423-1fcffcb4-2810-4a27-af7e-445f9fd12d13.png)
+## ScreenShots
+### Login
+![login](https://user-images.githubusercontent.com/89730979/166668203-55f90c5b-6073-47b9-9bba-d746752fd0a2.png)
+### Home Page
+![homepage](https://user-images.githubusercontent.com/89730979/166668289-e03bbb99-1c3f-4f46-bb72-d6201fbb8582.png)
+### Post
+![individualpost](https://user-images.githubusercontent.com/89730979/166668324-28dfeea1-d5ce-4688-8df8-2abf01743a91.png)
+### Explore Page
+![explore](https://user-images.githubusercontent.com/89730979/166668360-907dd9ff-7ba8-433b-b2b9-4daca8f364d6.png)
+### Portfolio Page
+![portfoliopage](https://user-images.githubusercontent.com/89730979/166668404-aa3d0651-516e-4383-a7fc-2d11ab384032.png)
+### Market Page
+![marketpage](https://user-images.githubusercontent.com/89730979/166668462-9a5fa2e5-620e-468f-8acd-22c5452d8d85.png)
+### ChatRooms
+![chatrooms](https://user-images.githubusercontent.com/89730979/166668496-c780258b-adeb-4a69-9966-62ecfa7521eb.png)
+## Authors
+#### Jonathan Pulido
+jonathanpmelian@gmail.com
+#### Alexis Rodriguez
+k4nijo@gmail.com
+## Contribution
+Contributions, issues, and feature requests are welcome!
+## License
+[MIT](https://github.com/jonathanpmelian/Caronte-Social-Network-Front/blob/main/LICENSE)
+## Support
+Give a ⭐️ if you like this project!
