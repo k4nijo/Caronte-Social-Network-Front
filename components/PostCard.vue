@@ -28,12 +28,12 @@
       </v-row>
 
       <v-row class="mx-0">
-        <v-col cols="3" class="colCategoryWidth pr-0" v-show="isPremium"
+        <v-col cols="3" class="colCategoryWidth pr-0"
           ><v-chip label :color="categoryColor" class="white--text" small>{{
             post.category
           }}</v-chip></v-col
         >
-        <v-col align="start" class="pl-0"
+        <v-col align="start" class="pl-0" v-show="isPremium"
           ><v-icon color="#F9A825" align="start">mdi-medal</v-icon></v-col
         >
       </v-row>
@@ -48,11 +48,25 @@
 
       <v-row class="mx-0" align="center">
         <v-col align="center"
-          ><v-btn icon small><v-icon>mdi-chevron-up</v-icon></v-btn
+          ><v-btn
+            icon
+            small
+            class="mr-1"
+            :class="foundedUserLikes ? 'green lighten-2' : 'white'"
+            ><v-icon :color="foundedUserLikes ? 'white' : 'green'"
+              >mdi-chevron-up</v-icon
+            ></v-btn
           >{{ post.likes.length }}</v-col
         >
         <v-col align="center"
-          ><v-btn icon small><v-icon>mdi-chevron-down</v-icon></v-btn
+          ><v-btn
+            icon
+            small
+            class="mr-1"
+            :class="foundedUserDislikes ? 'red lighten-2' : 'white'"
+            ><v-icon :color="foundedUserDislikes ? 'white' : 'red'"
+              >mdi-chevron-down</v-icon
+            ></v-btn
           >{{ post.dislikes.length }}</v-col
         >
         <v-col align="center"
@@ -90,6 +104,12 @@ export default {
     },
     isPremium() {
       return this.post.premium
+    },
+    foundedUserLikes() {
+      return this.post.likes.some((elem) => elem === this.$auth.user._id)
+    },
+    foundedUserDislikes() {
+      return this.post.dislikes.some((elem) => elem === this.$auth.user._id)
     },
   },
   methods: {
