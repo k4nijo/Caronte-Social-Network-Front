@@ -46,7 +46,7 @@
         <v-col>{{ post.summary }}</v-col>
       </v-row>
 
-      <v-row class="mx-0" align="center">
+      <v-row class="mx-0 textSize" align="center">
         <v-col align="center"
           ><v-btn
             icon
@@ -70,7 +70,7 @@
           >{{ post.dislikes.length }}</v-col
         >
         <v-col align="center"
-          ><v-btn icon small
+          ><v-btn icon small class="mr-1"
             ><v-icon>mdi-comment-multiple-outline</v-icon> </v-btn
           >{{ post.comments.length }}</v-col
         >
@@ -144,5 +144,8 @@ export default {
 }
 .colCategoryWidth {
   max-width: 110px;
+}
+.textSize {
+  font-size: 13px;
 }
 </style>
